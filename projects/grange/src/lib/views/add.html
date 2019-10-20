@@ -1,0 +1,20 @@
+<ng-container *ngIf="!type">
+    <h2>Add new content in {{ (context | async).title }}</h2>
+    <ul>
+        <li *ngFor="let typeName of types">
+            <a [traverseTo]="'./@@add?type=' + typeName">{{ typeName }}</a>
+        </li>
+    </ul>
+</ng-container>
+<ng-container *ngIf="type">
+    <h2>Add new {{ type }} in {{ (context | async).title }}</h2>
+    <form *ngIf="type" #f="ngForm" (submit)="onSave(f.value)">
+        <pa-input [id]="'id-input-' + type" name="id" ngModel>Id</pa-input>
+        <pa-input [id]="'title-input-' + type" name="title" ngModel>Title</pa-input>
+
+        <p *ngIf="error" class="error">{{error}}</p>
+
+        <pa-button (click)="onCancel()" color="secondary" size="small">Cancel</pa-button>
+        <pa-button (click)="onSave(f.value)" border size="small">Save</pa-button>
+    </form>
+</ng-container>

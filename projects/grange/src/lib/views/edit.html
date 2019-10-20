@@ -1,0 +1,5 @@
+<h2>{{ 'common.edit' | translate }} {{ (context | async).title }}</h2>
+<sf-form [schema]="schema" [(model)]="editModel"></sf-form>
+<p *ngIf="error" class="error">{{error}}</p>
+<pa-button (click)="onCancel()" color="secondary" size="small">Cancel</pa-button>
+<pa-button (click)="onSave()" border size="small">Save</pa-button>

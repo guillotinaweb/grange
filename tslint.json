@@ -60,7 +60,7 @@
       "single"
     ],
     "trailing-comma": false,
-    "component-class-suffix": true,
+    "component-class-suffix": [true, "Component", "View"],
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "no-conflicting-lifecycle": true,

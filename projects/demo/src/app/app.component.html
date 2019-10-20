@@ -1,0 +1,12 @@
+<header>
+    <a href="#" [traverseTo]="'/'">
+        <img height="64" src="assets/logo.svg" />
+    </a>
+
+    <pa-button *ngIf="isAuthenticated" (click)="logout()" icon="log-out" color="secondary"></pa-button>
+</header>
+<grange-breadcrumbs></grange-breadcrumbs>
+<main>
+    <traverser-outlet></traverser-outlet>
+</main>
+<grange-toast-container></grange-toast-container>

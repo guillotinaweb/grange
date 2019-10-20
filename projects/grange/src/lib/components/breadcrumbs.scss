@@ -1,0 +1,108 @@
+@import "../style";
+:host {
+    display: block;
+}
+.breadcrumb {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
+    padding: 0 rythm(2);
+    margin-bottom: 0;
+    font-weight: $font-weight-light;
+    list-style: none;
+    @include font-size(xl, l, m);
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
+    > :not(.breadcrumb-item) {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.breadcrumb-item {
+    padding: rythm(1) rythm(0);
+    margin: 1px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 45px;
+    max-width: 300px;
+
+    pa-ellipsis ::ng-deep {
+        .pa-ellipsis {
+            max-width: 300px;
+        }
+        .pa-ellipsis-text {
+            line-height: 21px;
+        }
+    }
+
+    &:not(:first-child) {
+        margin-left: rythm(1.5);
+    }
+    &:nth-child(2) {
+        margin-left: rythm(1);
+    }
+    $separator-color: $gray-pale;
+    // The separator between breadcrumbs (by default, a forward-slash: "/")
+    &:not(:last-child)::after {
+        display: inline-block; // Suppress underlining of the separator in modern browsers
+        padding-right: rythm(1);
+        padding-left: rythm(1);
+        margin-top: rythm(1);
+        background-image: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><polygon fill="%23'+str_slice(#{$separator-color},2)+'" fill-rule="evenodd" points="14.707 26.707 13.293 25.293 20.586 18 13.293 10.707 14.707 9.293 23.414 18"/></svg>');
+        content: '';
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+        position: absolute;
+        right: - rythm(2);
+        top: 1px;
+    }
+    & ::ng-deep .pa-button-link {
+        white-space: nowrap;
+    }
+    & .o-breadcrumb-item-more ::ng-deep svg {
+        fill: $separator-color;
+    }
+    & .o-ellipsis {
+        line-height: inherit;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+    & .o-ellipsis-extension {
+        line-height: inherit;
+        margin-top: 0;
+    }
+    & .help {
+        margin-left: rythm(1);
+    }
+
+    // IE9-11 hack to properly handle hyperlink underlines for breadcrumbs built
+    // without `<ul>`s. The `::before` pseudo-element generates an element
+    // *within* the .breadcrumb-item and thereby inherits the `text-decoration`.
+    //
+    // To trick IE into suppressing the underline, we give the pseudo-element an
+    // underline and then immediately remove it.
+    + .o-breadcrumb-item:hover::before {
+        text-decoration: underline;
+    }
+    // stylelint-disable-next-line no-duplicate-selectors
+    + .o-breadcrumb-item:hover::before {
+        text-decoration: none;
+    }
+
+    &.active {
+        color: $gray-blacky;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: rythm(1.5);
+        span {
+            margin-bottom: 0;
+        }
+    }
+}
