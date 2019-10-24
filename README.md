@@ -215,10 +215,27 @@ Add the `pastanaga-overrides.scss` file in `/src` (it might be empty but should 
 
 Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
 
-```
+```json
 "stylePreprocessorOptions": {
     "includePaths": [
         "src/develop/pastanaga-angular/projects/pastanaga/src/lib/styles"
     ]
 },
+...
+"assets": [
+    ...
+    {
+        "glob": "**/*",
+        "input": "src/develop/pastanaga-angular/projects/pastanaga/src/assets",
+        "output": "assets"
+    },
+]
+```
+
+Make the proper imports in `src/styles.scss`:
+
+```scss
+@import "./develop/pastanaga-angular/projects/pastanaga/src/lib/styles/common-reset";
+$font-path: "./develop/pastanaga-angular/projects/pastanaga/src/assets/fonts";
+@import "./develop/pastanaga-angular/projects/pastanaga/src/lib/styles/fonts";
 ```
