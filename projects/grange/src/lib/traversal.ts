@@ -53,7 +53,7 @@ export class GrangeViews {
     constructor(private grange: Grange) {}
 
     initialize() {
-        this.grange.traverser.addView('add', '*', AddView);
+        this.grange.traverser.addView('add', 'folderish', AddView);
         this.grange.traverser.addView('edit', '*', EditView);
         this.grange.traverser.addView('login', '*', LoginView);
         this.grange.traverser.addView('view', '*', ViewView);

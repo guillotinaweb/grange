@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { BaseView } from './base';
 import { Grange } from '../grange.service';
-import { concatMap } from 'rxjs/operators';
+import { concatMap, take } from 'rxjs/operators';
 
 @Component({
     selector: 'grange-add-view',
@@ -30,7 +30,10 @@ export class AddView extends BaseView implements OnInit {
     onSave(model: any) {
         this.error = '';
         model['@type'] = this.type;
-        this.contextPath.pipe(concatMap(path => this.grange.core.resource.create(path, model))).subscribe(
+        this.contextPath.pipe(
+            take(1),
+            concatMap(path => this.grange.core.resource.create(path, model))
+        ).subscribe(
             (res: any) => this.grange.traverser.traverse(res['@id']),
             error => this.error = error.message || `Something went wrong while creating ${model.id}`
         );

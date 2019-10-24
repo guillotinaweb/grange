@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BaseView } from './base';
 import { Grange } from '../grange.service';
-import { concatMap, map } from 'rxjs/operators';
+import { concatMap, map, take } from 'rxjs/operators';
 
 @Component({
     selector: 'grange-folder-view',
@@ -11,6 +11,7 @@ import { concatMap, map } from 'rxjs/operators';
 
 export class FolderView extends BaseView {
     children = this.contextPath.pipe(
+        take(1),
         concatMap(path => this.grange.core.resource.items(path)),
         map(res => res.items)
     );

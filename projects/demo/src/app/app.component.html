@@ -5,7 +5,7 @@
 
     <pa-button *ngIf="isAuthenticated" (click)="logout()" icon="log-out" color="secondary"></pa-button>
 </header>
-<grange-breadcrumbs></grange-breadcrumbs>
+<grange-breadcrumbs *ngIf="isAuthenticated"></grange-breadcrumbs>
 <main>
     <traverser-outlet></traverser-outlet>
 </main>
