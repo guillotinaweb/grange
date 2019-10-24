@@ -46,6 +46,8 @@ Install Grange in the Angular project:
 npm install @guillotinaweb/grange
 ```
 
+Add an empty `pastanaga-overrides.scss` file in `/src` (it might be used to override Pastanaga defaults).
+
 Import in the `app.module.ts` the Grange module plus a minimal NgRx store, and provide the Guillotina backend URL to an existing container:
 
 ```typescript
@@ -168,7 +170,7 @@ Then create the `mrs.developer.json`:
         "url": "git@github.com:guillotinaweb/grange.git",
         "https": "https://github.com/guillotinaweb/grange.git",
         "path": "/projects/grange/src",
-        "branch": "master"
+        "branch": "pastanaga-variables-import"
     },
     "grange-core": {
         "url": "git@github.com:guillotinaweb/grange-core.git",
@@ -198,13 +200,25 @@ Then create the `mrs.developer.json`:
         "url": "git@github.com:plone/pastanaga-angular.git",
         "https": "https://github.com/plone/pastanaga-angular.git",
         "path": "/projects/pastanaga/src",
-        "branch": "master"
+        "branch": "pastanaga-variables-import"
     }
 }
 ```
 
-Then install the NPM dependencies:
+Install the NPM dependencies:
 
 ```
-npm install angular-svg-icon jexl medium-editor rxjs tslib z-schema
+npm install angular-svg-icon jexl medium-editor rxjs tslib z-schema @angular/cdk @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools
+```
+
+Add the `pastanaga-overrides.scss` file in `/src` (it might be empty but should exist).
+
+Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
+
+```
+"stylePreprocessorOptions": {
+    "includePaths": [
+        "src/develop/pastanaga-angular/projects/pastanaga/src/lib/styles"
+    ]
+},
 ```
