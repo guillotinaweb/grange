@@ -145,3 +145,66 @@ The `login` view displays a login form and redirects to `view` if login is succe
 ### Form generator
 
 ### UI library
+
+## Developers
+
+If we want to run Grange into an Anugular project using the GitHub master branches of all the dependencies, we need to use mrs-developer:
+
+```
+npm install mrs-developer
+```
+
+Then create the `mrs.developer.json`:
+
+```json
+{
+    "angular-traversal": {
+        "path": "/projects/traversal/src/lib",
+        "url": "git@github.com:guillotinaweb/angular-traversal.git",
+        "https": "https://github.com/guillotinaweb/angular-traversal.git",
+        "branch": "master"
+    },
+    "grange": {
+        "url": "git@github.com:guillotinaweb/grange.git",
+        "https": "https://github.com/guillotinaweb/grange.git",
+        "path": "/projects/grange/src",
+        "branch": "master"
+    },
+    "grange-core": {
+        "url": "git@github.com:guillotinaweb/grange-core.git",
+        "https": "https://github.com/guillotinaweb/grange-core.git",
+        "path": "/projects/grange-core/src",
+        "branch": "master"
+    },
+    "grange-form": {
+        "path": "/projects/grange-form/src/lib",
+        "url": "git@github.com:guillotinaweb/grange-form.git",
+        "https": "https://github.com/guillotinaweb/grange-form.git",
+        "branch": "master"
+    },
+    "ngx-schema-form": {
+        "path": "/projects/schema-form/src/lib",
+        "url": "git@github.com:guillotinaweb/ngx-schema-form.git",
+        "https": "https://github.com/guillotinaweb/ngx-schema-form.git",
+        "branch": "master"
+    },
+    "ngx-state-traverser": {
+        "path": "/projects/ngx-state-traverser/src",
+        "url": "git@github.com:guillotinaweb/ngx-state-traverser.git",
+        "https": "https://github.com/guillotinaweb/ngx-state-traverser.git",
+        "branch": "master"
+    },
+    "pastanaga-angular": {
+        "url": "git@github.com:plone/pastanaga-angular.git",
+        "https": "https://github.com/plone/pastanaga-angular.git",
+        "path": "/projects/pastanaga/src",
+        "branch": "master"
+    }
+}
+```
+
+Then install the NPM dependencies:
+
+```
+npm install angular-svg-icon jexl medium-editor rxjs tslib z-schema
+```
