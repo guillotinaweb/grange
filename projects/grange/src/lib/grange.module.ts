@@ -20,7 +20,7 @@ import {
     TooltipModule
 } from 'pastanaga-angular';
 import { FormsModule } from '@angular/forms';
-import { en } from './i18n/en';
+import { GRANGE_TRANSLATIONS_EN } from './i18n/en';
 import { AddView } from './views/add';
 import { EditView } from './views/edit';
 import { ActionsComponent } from './components/actions';
@@ -83,7 +83,7 @@ export class GrangeRootModule {
                 { provide: 'LANG', useValue: 'en_US' },
                 {
                     provide: 'TRANSLATIONS', useValue: {
-                        en_US: { ...en } as any,
+                        en_US: { ...GRANGE_TRANSLATIONS_EN } as any,
                     }
                 },
             ],

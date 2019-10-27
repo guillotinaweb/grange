@@ -1,4 +1,4 @@
-export const en = {
+export const GRANGE_TRANSLATIONS_EN = {
     breadcrumbs: {
         here: 'You are here:',
         home: 'Home',

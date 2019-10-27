@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Traverser } from 'angular-traversal';
 import { GrangeCore } from 'grange-core';
 import { GrangeState } from './state';
+import { PastanagaService } from 'pastanaga-angular';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,7 @@ export class Grange {
         public traverser: Traverser,
         public core: GrangeCore,
         public store: Store<GrangeState>,
+        public ui: PastanagaService,
     ) {
         this.store.dispatch({ type: '[Traversing] Watch'});
         this.core.auth.isAuthenticated.subscribe(auth => {
