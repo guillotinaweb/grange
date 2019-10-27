@@ -1,6 +1,6 @@
 # Grange
 
-The Guillotina Restapi ANgular Environment.
+The Guillotina REST API aNGular Environment.
 
 The Grange is a rich extensible development toolkit.
 
