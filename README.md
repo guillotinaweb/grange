@@ -239,3 +239,11 @@ Make the proper imports in `src/styles.scss`:
 $font-path: "./develop/pastanaga-angular/projects/pastanaga/src/assets/fonts";
 @import "./develop/pastanaga-angular/projects/pastanaga/src/lib/styles/fonts";
 ```
+
+## Running Guillotina locally
+
+```
+docker-compose -f g-api/docker-compose.yaml up
+```
+
+It comes with few content types example, they can be easily adapted and extended by editing `g-api/config.yaml`.
