@@ -34,9 +34,9 @@ this.grange.traverser.addView('buy', 'Shoes', BuyShoesView);
 
 It will make `http://localhost:4200/shoes/pink-boots/@@buy` a valid path.
 
-When creating a custom view, we can use ready-to-use components (like breadcrumbs, form generator for editing, etc.)directly in the template, and we can use the Grange service to implement custom features in the TypeScript component.
+When creating a custom view, we can use ready-to-use components (like breadcrumbs, form generator for editing, etc.) directly in the template, and we can use the Grange service to implement custom features in the TypeScript component.
 
-The good thing about a Grange app is it is totally neutral about the Guillotina backend. It does not assume any hierarchical structure (like our shoes are not meant to be in `/shoes` folder, if we have some shoes object in `/autumn/new-shoes/red-sleepers`, the app can render it). It does not even assume what are the content types, we could make our Shoe type folderish and make an addable type to display shoes pictures named ShoesPicture, the app will offer the Add button in the actions components, the create form will work for ShoesPicture, etc. (obviously we probablyu want to implement some custom views for our ShoesPicture type, nevertheless the basic CRUD scenario would be working without any change).
+The good thing about a Grange app is it is totally neutral about the Guillotina backend. It does not assume any hierarchical structure (like our shoes are not meant to be in `/shoes` folder, if we have some shoes object in `/autumn/new-shoes/red-sleepers`, the app can render it). It does not even assume what are the content types, we could make our Shoe type folderish and make an addable type to display shoes pictures named ShoesPicture, the app will offer the Add button in the actions components, the create form will work for ShoesPicture, etc. (we probably want to implement some custom views for our ShoesPicture type, nevertheless the basic CRUD scenario would be working without any change).
 
 ## Building a basic Grange app
 
