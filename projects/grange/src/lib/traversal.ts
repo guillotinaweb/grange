@@ -73,7 +73,9 @@ export class FullPathNormalizer extends Normalizer {
             if (base.startsWith('/') && path.startsWith('http')) {
                 path = '/' + path.split('/').slice(3).join('/');
             }
-            if (path.startsWith(base)) {
+            if (path === base) {
+                path = '/';
+            } else if (path.startsWith(base)) {
                 path = path.substring(base.length);
             }
         }
