@@ -136,17 +136,109 @@ The `login` view displays a login form and redirects to `view` if login is succe
 
 #### CRUD actions
 
+The `<grange-actions></grange-actions>` component allows to display the Add / Edit / Delete buttons.
+
 #### Breadcrumbs
+
+The `<grange-breadcrumbs></grange-breadcrumbs>` component display the current breadcrumbs.
 
 #### Toasters
 
+By adding the `<grange-toast-container></grange-toast-container>` component in our main `app.component.html` template, we can use the toaster service to display toast messages:
+
+```typescript
+import { Grange } from 'grange';
+...
+
+    constructor(private grange: Grange) {}
+
+    notify() {
+        this.grange.ui.toaster.open('Hello');
+    }
+```
+
 ### Services
+
+All the services are accessible through the global `Grange` service
+
+```typescript
+import { Grange } from 'grange';
+...
+
+    constructor(private grange: Grange) {}
+```
+
+#### The Traverser service
+
+`this.grange.traverser`
+
+It allows to declare new views. For example to add a custome view to edit the player type:
+
+```typescript
+this.grange.traverser.addView('edit', 'Player', EditPlayerPreferencesComponent);
+```
+
+It allows to navigate to a given path:
+
+```typescript
+this.grange.traverser.navigate(this.currentPlayer.team);
+```
+
+```typescript
+this.grange.traverser.navigate(this.currentPlayer['@id'] + '/@@score');
+```
+
+It also allows to load the context for a tile:
+
+```typescript
+this.grange.traverser.loadTile('details', this.currentPlayer.team);
+```
+
+More details in the [Angular traversal documentation](https://github.com/guillotinaweb/angular-traversal).
+
+#### Grange core
+
+`this.grange.core`
+
+The core service provides access to:
+
+- the authentication service, to login, logout, get the current username;
+- the resource service to interact with the Guillotina resources (get, create, modify, delete, find, share, get children, get navigation links, breadcrumbs, etc.);
+- the API service to handle all the low-level communications with the Guillotina backend: regular HTTP verbs or file downloading.
+
+#### Redux store
+
+`this.grange.store`
+
+It allows to select state information or to dispatch actions. See below the "State" section.
+
+#### Grange UI
+
+`this.grange.ui`
+
+It gives access to the main Pastanaga services: calendar, popup, sidebar, and translate.
+
+See "Pastanaga UI library" section below.
 
 ### State
 
+Grange comes with a NgRx store.
+
+TO BE COMPLETED
+
 ### Form generator
 
-### UI library
+The Guillotina RESTAPI supports the JSON Schema standard.
+
+Grange uses ngx-schema-form to render any JSON Schema as a dynamic form. The form widgets use the Pastanaga library.
+
+```html
+<sf-form [schema]="schema" [(model)]="editModel"></sf-form>
+```
+
+### Pastanaga UI library
+
+TO BE COMPLETED
 
 ## Developers
 
