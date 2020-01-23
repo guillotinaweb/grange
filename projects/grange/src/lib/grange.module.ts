@@ -58,7 +58,7 @@ const COMPONENTS = [
         ControlsModule,
         TranslateModule,
         SchemaFormModule.forRoot(),
-        ToasterModule.forRoot(),
+        ToasterModule,
         TooltipModule,
     ],
     exports: [
