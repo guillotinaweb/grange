@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Grange } from '../grange.service';
 import { LoginInfo } from 'grange-core';
+import { markForCheck } from 'develop/pastanaga-angular/projects/pastanaga/src/lib/common/utils';
 
 @Component({
     selector: 'grange-login',
@@ -15,10 +16,14 @@ export class LoginView implements OnInit {
 
     constructor(
         public grange: Grange,
+        private cdr: ChangeDetectorRef,
     ) {}
 
     ngOnInit() {
-        this.grange.core.auth.isAuthenticated.subscribe(auth => this.isLogged = auth.state);
+        this.grange.core.auth.isAuthenticated.subscribe(auth => {
+            this.isLogged = auth.state;
+            markForCheck(this.cdr);
+        });
     }
 
     onSubmit(data: LoginInfo | {token: string}) {
