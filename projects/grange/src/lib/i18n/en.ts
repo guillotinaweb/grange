@@ -40,6 +40,8 @@ export const GRANGE_TRANSLATIONS_EN = {
         password: 'Password',
         button: 'Login',
         token: 'Token',
+        forgot: 'Recover',
+        register: 'Register',
         'use-token': 'Use token',
     }
 };

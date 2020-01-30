@@ -5,12 +5,28 @@
         <pa-input name="login" ngModel>login.username</pa-input>
         <pa-input type="password" name="password" ngModel>login.password</pa-input>
     </ng-container>
-    
-    <pa-toggle [(isSelected)]="useToken" yesLabel="common.yes" noLabel="common.no">login.use-token</pa-toggle>
-    <pa-input *ngIf="useToken" name="token" ngModel>login.token</pa-input>
-    
+
+
+    <ng-container *ngIf="allowToken">
+      <pa-toggle [(isSelected)]="useToken" yesLabel="common.yes" noLabel="common.no">login.use-token</pa-toggle>
+      <pa-input *ngIf="useToken" name="token" ngModel>login.token</pa-input>
+    </ng-container>
+
     <footer>
-        <pa-button border type="submit">login.button</pa-button>
+        <pa-button border type="submit">login.button.login</pa-button>
     </footer>
-    
+
 </form>
+
+<div *ngIf="allowSocial">
+  <pa-button border type="submit">login.button.social</pa-button>
+</div>
+
+<form #register="ngForm" (ngSubmit)="onRegister(form.value)" *ngIf="allowRegister">
+  <pa-button border type="submit">login.button.register</pa-button>
+</form>
+
+<form #register="ngForm" (ngSubmit)="onForget(form.value)" *ngIf="allowForgot">
+  <pa-button border type="submit">login.button.forgot</pa-button>
+</form>
+
