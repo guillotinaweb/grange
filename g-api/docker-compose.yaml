@@ -16,3 +16,17 @@ services:
       - postgres
     volumes:
       - ${PWD}/g-api/config.yaml:/usr/src/app/config.yml
+  init:
+    image: curlimages/curl:7.68.0
+    command: "-L -v -X POST http://guillotina:8081/db --retry-connrefused --retry 10 --user root:root --retry-delay 10 -d '{\"@type\": \"Container\", \"id\": \"web\"}'"
+    links:
+      - guillotina
+    depends_on:
+      - guillotina
+  init2:
+    image: curlimages/curl:7.68.0
+    command: "-L -v -X POST http://guillotina:8081/db/web/@addons --retry-connrefused --retry 10 --user root:root --retry-delay 12 -d '{\"id\": \"dbusers\"}'"
+    links:
+      - guillotina
+    depends_on:
+      - init

@@ -13,6 +13,9 @@ applications:
   - guillotina_cms
   - guillotina.contrib.cache
   - guillotina.contrib.catalog.pg
+  - guillotina.contrib.dbusers
+  - guillotina_authentication
+host: 0.0.0.0
 address: 8081
 static:
   - favicon.png: static/favicon.png
@@ -92,7 +95,6 @@ contents:
     behaviors:
       - guillotina.behaviors.dublincore.IDublinCore
       - guillotina_cms.interfaces.base.ICMSBehavior
-      - guillotina_cms.interfaces.tiles.ITiles
       - guillotina_cms.interfaces.Imycontextdata
     properties:
       json_example:
