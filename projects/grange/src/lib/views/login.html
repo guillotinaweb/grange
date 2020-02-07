@@ -13,20 +13,19 @@
     </ng-container>
 
     <footer>
-        <pa-button border type="submit">login.button.login</pa-button>
+      <pa-button border type="submit">login.button.login</pa-button>
     </footer>
 
 </form>
 
-<div *ngIf="allowSocial">
-  <pa-button border type="submit">login.button.social</pa-button>
+<div>
+  <pa-button border (click)="onForgot()" *ngIf="allowForgot">login.button.forgot</pa-button>
 </div>
 
-<form #register="ngForm" (ngSubmit)="onRegister(form.value)" *ngIf="allowRegister">
-  <pa-button border type="submit">login.button.register</pa-button>
-</form>
+<div>
+  <pa-button border (click)="onRegister()" *ngIf="allowRegister">login.button.register</pa-button>
+</div>
 
-<form #register="ngForm" (ngSubmit)="onForget(form.value)" *ngIf="allowForgot">
-  <pa-button border type="submit">login.button.forgot</pa-button>
-</form>
-
+<div *ngIf="allowSocial">
+  <pa-button border *ngFor="let provider of providers" click="socialLogin(provider)" type="submit">{{provider}}</pa-button>
+</div>

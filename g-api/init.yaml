@@ -1,0 +1,64 @@
+wait_for:
+  url: http://guillotina:8081/
+  method: GET
+  status: 200
+  retries: 10
+  wait: 10
+sequencial:
+  - url: http://guillotina:8081/db
+    method: POST
+    valid:
+      - 200
+      - 201
+      - 409
+    auth:
+      - root
+      - root
+    json:
+      '@type': Container
+      id: site
+  - url: http://guillotina:8081/db/site/@addons
+    valid:
+      - 200
+      - 412
+    auth:
+      - root
+      - root
+    method: POST
+    json:
+      id: dbusers
+  - url: http://guillotina:8081/db/site/@addons
+    valid:
+      - 200
+      - 412
+    auth:
+      - root
+      - root
+    method: POST
+    json:
+      id: email_validation
+  - url: http://guillotina:8081/db/site/@registry
+    valid:
+      - 200
+      - 412
+    auth:
+      - root
+      - root
+    method: POST
+    json:
+      "guillotina.contrib.email_validation.interfaces.IValidationSettings.site_url": "http://localhost:4200"
+      "guillotina.contrib.email_validation.interfaces.IValidationSettings.validation_url": "/@@validation"
+  - url:  http://guillotina:8081/db/site/users
+    valid:
+      - 201
+      - 409
+    auth:
+      - root
+      - root
+    method: POST
+    json:
+      '@type': User
+      id: admin
+      password: admin
+      user_roles: ["guillotina.ContainerAdmin"]
+      email: nobody@guillotina.io

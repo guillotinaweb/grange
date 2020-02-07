@@ -9,8 +9,10 @@ import { GrangeFormWidgetRegistry, GrangeFormModule } from 'grange-form';
 import { StateTraverserModule } from 'ngx-state-traverser';
 import { GrangeStateModule } from './state/module';
 import { LoginView } from './views/login';
+import { ForgotView } from './views/forgot';
 import { FolderView } from './views/folder';
 import { ViewView } from './views/view';
+import { ValidationView } from './views/validation';
 import {
     TextFieldModule,
     ButtonModule,
@@ -32,6 +34,8 @@ const VIEWS = [
     EditView,
     FolderView,
     LoginView,
+    ForgotView,
+    ValidationView,
     ViewView,
 ];
 const COMPONENTS = [

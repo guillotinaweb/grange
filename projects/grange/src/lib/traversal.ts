@@ -8,6 +8,8 @@ import { AddView } from './views/add';
 import { LoginView } from './views/login';
 import { ViewView } from './views/view';
 import { EditView } from './views/edit';
+import { ForgotView } from './views/forgot';
+import { ValidationView } from './views/validation';
 import { FolderView } from './views/folder';
 
 @Injectable()
@@ -56,6 +58,8 @@ export class GrangeViews {
         this.grange.traverser.addView('add', 'folderish', AddView);
         this.grange.traverser.addView('edit', '*', EditView);
         this.grange.traverser.addView('login', '*', LoginView);
+        this.grange.traverser.addView('login', '*', ValidationView);
+        this.grange.traverser.addView('forgot', '*', ForgotView);
         this.grange.traverser.addView('view', '*', ViewView);
         this.grange.traverser.addView('view', 'folderish', FolderView);
     }
