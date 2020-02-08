@@ -1,20 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Grange } from '../grange.service';
+import { Grange } from '../../grange.service';
 import { RecoverInfo } from 'grange-core';
 import { markForCheck } from 'develop/pastanaga-angular/projects/pastanaga/src/lib/common/utils';
 
 @Component({
-  selector: 'grange-validation',
-  templateUrl: './validation.html',
-  styleUrls: ['./validation.scss'],
+  selector: 'grange-forgot',
+  templateUrl: './forgot.html',
+  styleUrls: ['./forgot.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ValidationView implements OnInit {
+export class ForgotView implements OnInit {
   error = '';
   isLogged: boolean;
-  schema?: any;
-  editModel?: any;
-  token: string;
+  title: string;
 
   constructor(
     public grange: Grange,
@@ -22,24 +20,15 @@ export class ValidationView implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.grange.core.auth.isAuthenticated.subscribe(auth => {
       this.isLogged = auth.state;
       markForCheck(this.cdr);
     });
-    debugger;
-    this.token = '';
-    this.grange.core.api.get('/@validate_schema/' + this.token).subscribe(
-      res => {
-        this.schema = res;
-        markForCheck(this.cdr);
-      }
-    );
   }
 
   onSubmit(data: RecoverInfo) {
     this.error = '';
-    this.grange.core.api.post('/@validation/' + this.token, this.editModel).subscribe(
+    this.grange.core.api.post('/@users/' + data.login + '/reset-password', {}).subscribe(
       res => {
         // TODO: add a message
         this.grange.traverser.traverse('/');

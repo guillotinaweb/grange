@@ -33,6 +33,6 @@
         "url": "git@github.com:plone/pastanaga-angular.git",
         "https": "https://github.com/plone/pastanaga-angular.git",
         "path": "/projects/pastanaga/src",
-        "tag": "1.6.5"
+        "tag": "1.9.0"
     }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Grange } from '../grange.service';
+import { Grange } from '../../grange.service';
 import { LoginInfo } from 'grange-core';
 import { ConfigurationService } from 'grange-core';
-import { markForCheck } from 'develop/pastanaga-angular/projects/pastanaga/src/lib/common/utils';
+import { markForCheck } from 'pastanaga-angular';
 
 @Component({
   selector: 'grange-login',
@@ -14,11 +14,11 @@ export class LoginView implements OnInit {
   useToken = false;
   error = '';
   isLogged: boolean;
-  title: string;
-  allowRegister: boolean;
-  allowSocial: boolean;
-  allowForgot: boolean;
-  allowToken: boolean;
+  title?: string;
+  allowRegister = false;
+  allowSocial = false;
+  allowForgot = false;
+  allowToken = false;
   providers = [];
 
   constructor(
@@ -57,8 +57,7 @@ export class LoginView implements OnInit {
   }
 
   socialLogin(provider: string) {
-    const callUrl = this.config.get('BACKEND_URL') + '/@authenticate/' + provider + '?callback={{WEB_URL}}/@@callback/' + provider;
-    window.location.href = callUrl;
+    this.grange.core.auth.goSocialLogin(provider, '@@callback');
   }
 
   onSubmit(data: LoginInfo) {

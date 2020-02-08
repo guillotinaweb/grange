@@ -8,11 +8,14 @@ import { WidgetRegistry, SchemaFormModule } from 'ngx-schema-form';
 import { GrangeFormWidgetRegistry, GrangeFormModule } from 'grange-form';
 import { StateTraverserModule } from 'ngx-state-traverser';
 import { GrangeStateModule } from './state/module';
-import { LoginView } from './views/login';
-import { ForgotView } from './views/forgot';
 import { FolderView } from './views/folder';
 import { ViewView } from './views/view';
-import { ValidationView } from './views/validation';
+
+import { LoginView } from './views/user/login';
+import { ForgotView } from './views/user/forgot';
+import { ValidationView } from './views/user/validation';
+import { RegisterView } from './views/user/register';
+import { CallbackView } from './views/user/callback';
 import {
     TextFieldModule,
     ButtonModule,
