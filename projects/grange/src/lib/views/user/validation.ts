@@ -6,7 +6,7 @@ import { markForCheck } from 'pastanaga-angular';
   selector: 'grange-validation',
   templateUrl: './validation.html',
   styleUrls: ['./validation.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ValidationView implements OnInit {
   error = '';
@@ -41,8 +41,13 @@ export class ValidationView implements OnInit {
     );
   }
 
+  updateModel(event) {
+    if (event.value) {
+      this.editModel = event.value;
+    }
+  }
+
   onSubmit(data: any) {
-    debugger;
     this.error = '';
     this.grange.core.auth.doValidation(this.token, this.editModel).subscribe(
       res => {

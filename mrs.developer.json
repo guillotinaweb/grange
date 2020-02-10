@@ -15,7 +15,7 @@
         "path": "/projects/grange-form/src/lib",
         "url": "git@github.com:guillotinaweb/grange-form.git",
         "https": "https://github.com/guillotinaweb/grange-form.git",
-        "tag": "1.0.1"
+        "branch": "fixing_pa"
     },
     "ngx-schema-form": {
         "path": "/projects/schema-form/src/lib",

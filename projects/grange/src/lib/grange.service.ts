@@ -17,10 +17,15 @@ export class Grange {
         public ui: PastanagaService,
     ) {
         this.store.dispatch({ type: '[Traversing] Watch'});
-        this.core.auth.isAuthenticated.subscribe(auth => {
-            if (!auth.state) {
-                this.traverser.traverse('./@@login');
-            }
-        });
+        // this.core.auth.isAuthenticated.subscribe(auth => {
+        //     if (!auth.state) {
+        //       this.traverser.target.subscribe(
+        //         res => {
+        //           this.traverser.traverse('./@@login');
+
+        //         }
+        //       );
+        //     }
+        // });
     }
 }

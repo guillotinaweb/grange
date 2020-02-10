@@ -60,5 +60,5 @@ sequencial:
       '@type': User
       id: admin
       password: admin
-      user_roles: ["guillotina.ContainerAdmin"]
+      user_roles: ["guillotina.ContainerAdmin", "guillotina.Owner"]
       email: nobody@guillotina.io
