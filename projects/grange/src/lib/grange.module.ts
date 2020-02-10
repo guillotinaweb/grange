@@ -39,6 +39,8 @@ const VIEWS = [
     LoginView,
     ForgotView,
     ValidationView,
+    CallbackView,
+    RegisterView,
     ViewView,
 ];
 const COMPONENTS = [
