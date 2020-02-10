@@ -28,7 +28,7 @@ export class ForgotView implements OnInit {
 
   onSubmit(data: RecoverInfo) {
     this.error = '';
-    this.grange.core.api.post('/@users/' + data.login + '/reset-password', {}).subscribe(
+    this.grange.core.auth.requestPasswordReset(data.login).subscribe(
       res => {
         // TODO: add a message
         this.grange.traverser.traverse('/');
