@@ -15,7 +15,6 @@ import { markForCheck } from 'pastanaga-angular';
 export class BaseAuthComponent implements OnInit {
     isLogged: boolean;
     logo?: string;
-    title?: string;
 
     constructor(
         public grange: Grange,
@@ -30,11 +29,5 @@ export class BaseAuthComponent implements OnInit {
             this.isLogged = auth.state;
             markForCheck(this.cdr);
         });
-        this.grange.core.auth.getInfo().subscribe(
-          res => {
-            this.title = res.title;
-            markForCheck(this.cdr);
-          }
-        );
     }
 }

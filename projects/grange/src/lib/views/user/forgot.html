@@ -1,10 +1,12 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-  <p class="error" *ngIf="error">{{ error }}</p>
+<grange-auth>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+    <p class="error" *ngIf="error">{{ error }}</p>
 
-  <pa-input name="login" ngModel>login.username</pa-input>
+    <pa-input name="login" ngModel>login.username</pa-input>
 
-  <footer>
-    <pa-button border type="submit">login.button.recover</pa-button>
-  </footer>
+    <footer>
+      <pa-button border type="submit">login.button.recover</pa-button>
+    </footer>
 
-</form>
+  </form>
+</grange-auth>

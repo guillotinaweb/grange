@@ -29,6 +29,6 @@
   </div>
 
   <div class="auth_button" *ngIf="allowSocial">
-    <pa-button border *ngFor="let provider of providers" class="{{provider}}-social" click="socialLogin(provider)" type="submit">{{provider}}</pa-button>
+    <pa-button border *ngFor="let provider of providers" class="{{provider}}-social" (click)="socialLogin(provider)" type="submit">{{provider}}</pa-button>
   </div>
 </grange-auth>
