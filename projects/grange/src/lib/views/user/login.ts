@@ -31,7 +31,7 @@ export class LoginView implements OnInit {
   }
 
   ngOnInit() {
-    this.grange.core.api.get('/@info').subscribe(
+    this.grange.core.auth.getInfo().subscribe(
       res => {
         this.allowRegister = res.register;
         if (res.social !== undefined && res.social.length > 0) {

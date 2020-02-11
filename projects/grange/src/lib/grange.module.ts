@@ -31,6 +31,7 @@ import { EditView } from './views/edit';
 import { ActionsComponent } from './components/actions';
 import { ToastContainerComponent } from './components/toast-container';
 import { BreadcrumbsComponent } from './components/breadcrumbs';
+import { BaseAuthComponent } from './components/base-auth';
 
 const VIEWS = [
     AddView,
@@ -47,6 +48,7 @@ const COMPONENTS = [
     ActionsComponent,
     ToastContainerComponent,
     BreadcrumbsComponent,
+    BaseAuthComponent,
 ];
 @NgModule({
     declarations: [

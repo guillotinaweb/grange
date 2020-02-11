@@ -1,9 +1,17 @@
-@import "../../style";
+@import "../style";
 
 :host {
     display: block;
     margin: rythm(2) auto;
     width: 400px;
+
+    .auth_header {
+      text-align: center;
+      img {
+        max-width: 200px;
+        margin: 20px auto;
+      }
+    }
 
     .error {
         color: $red;
@@ -12,10 +20,6 @@
     footer {
         text-align: center;
     }
-
-    .auth_button {
-      margin-top: 1vh;
-      margin-bottom: 1vh;
-      text-align: center;
-    }
 }
+
+
