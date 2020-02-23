@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Grange } from '../../grange.service';
 import { RecoverInfo } from 'grange-core';
-import { markForCheck } from 'develop/pastanaga-angular/projects/pastanaga/src/lib/common/utils';
+import { markForCheck } from 'pastanaga-angular';
 
 @Component({
   selector: 'grange-forgot',

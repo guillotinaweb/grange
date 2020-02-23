@@ -30,6 +30,11 @@ export class BaseView implements OnDestroy {
                 this.grange.traverser.traverse('./@@login');
             }
         });
+        this.grange.core.auth.isAuthenticated.pipe(takeUntil(this.destroy)).subscribe(auth => {
+            if (!auth.state) {
+                this.grange.traverser.traverse('./@@login');
+            }
+        });
     }
 
     ngOnDestroy() {

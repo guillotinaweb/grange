@@ -30,6 +30,7 @@ import { ButtonModule } from 'pastanaga-angular';
             useValue: {
                 BACKEND_URL: environment.backend,
                 CLIENT_TIMEOUT: 5000,
+                LOGO: 'assets/logo.svg',
             },
         },
     ],

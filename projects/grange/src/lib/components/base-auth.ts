@@ -1,4 +1,3 @@
-import { OnDestroy } from '@angular/core';
 import { Grange } from '../grange.service';
 import { ConfigurationService } from 'grange-core';
 
@@ -13,7 +12,6 @@ import { markForCheck } from 'pastanaga-angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseAuthComponent implements OnInit {
-    isLogged: boolean;
     logo?: string;
 
     constructor(
@@ -21,12 +19,11 @@ export class BaseAuthComponent implements OnInit {
         protected config: ConfigurationService,
         private cdr: ChangeDetectorRef
     ) {
-      this.logo = this.config.get('LOGO', 'https://raw.githubusercontent.com/guillotinaweb/gigi/master/src/assets/logo.svg');
+      this.logo = this.config.get('LOGO');
     }
 
     ngOnInit() {
         this.grange.core.auth.isAuthenticated.subscribe(auth => {
-            this.isLogged = auth.state;
             markForCheck(this.cdr);
         });
     }

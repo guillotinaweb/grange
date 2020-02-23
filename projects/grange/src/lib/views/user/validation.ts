@@ -6,7 +6,7 @@ import { markForCheck } from 'pastanaga-angular';
   selector: 'grange-validation',
   templateUrl: './validation.html',
   styleUrls: ['./validation.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ValidationView implements OnInit {
   error = '';
@@ -21,7 +21,6 @@ export class ValidationView implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.grange.core.auth.isAuthenticated.subscribe(auth => {
       this.isLogged = auth.state;
       markForCheck(this.cdr);
