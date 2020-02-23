@@ -9,13 +9,13 @@
         "url": "git@github.com:guillotinaweb/grange-core.git",
         "https": "https://github.com/guillotinaweb/grange-core.git",
         "path": "/projects/grange-core/src",
-        "tag": "1.0.2"
+        "tag": "1.1.0"
     },
     "grange-form": {
         "path": "/projects/grange-form/src/lib",
         "url": "git@github.com:guillotinaweb/grange-form.git",
         "https": "https://github.com/guillotinaweb/grange-form.git",
-        "tag": "1.0.1"
+        "tag": "1.0.2"
     },
     "ngx-schema-form": {
         "path": "/projects/schema-form/src/lib",
@@ -33,6 +33,6 @@
         "url": "git@github.com:plone/pastanaga-angular.git",
         "https": "https://github.com/plone/pastanaga-angular.git",
         "path": "/projects/pastanaga/src",
-        "tag": "1.6.5"
+        "tag": "1.11.0"
     }
 }

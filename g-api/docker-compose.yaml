@@ -7,12 +7,20 @@ services:
       POSTGRES_DB: guillotina
       POSTGRES_USER: guillotina
       POSTGRES_PASSWORD: guillotina
+  redis:
+    image: redis:5
+    container_name: redis_test
   guillotina:
-    image: plone/guillotina_cms:latest
+    image: plone/guillotina_cms:master
     command: sh -c "sleep 5 && g -c /usr/src/app/config.yml"
     ports:
       - '8081:8081'
     links:
       - postgres
+      - redis
     volumes:
       - ${PWD}/g-api/config.yaml:/usr/src/app/config.yml
+  init:
+    image: guillotina/initializer:latest
+    volumes:
+      - ${PWD}/g-api/init.yaml:/usr/src/app/config.yaml

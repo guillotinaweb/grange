@@ -1,0 +1,34 @@
+<grange-auth>
+  <h1>{{title}}</h1>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+      <p class="error" *ngIf="error">{{ error }}</p>
+
+      <ng-container *ngIf="!useToken">
+          <pa-input name="login" ngModel>login.username</pa-input>
+          <pa-input type="password" name="password" ngModel>login.password</pa-input>
+      </ng-container>
+
+
+      <ng-container *ngIf="allowToken">
+        <pa-toggle [(isSelected)]="useToken" yesLabel="common.yes" noLabel="common.no">login.use-token</pa-toggle>
+        <pa-input *ngIf="useToken" name="token" ngModel>login.token</pa-input>
+      </ng-container>
+
+      <footer>
+        <pa-button border (click)="onSubmit(form.value)">login.button.login</pa-button>
+      </footer>
+
+  </form>
+
+  <div class="auth_button">
+    <pa-button border (click)="onForgot()" *ngIf="allowForgot">login.button.forgot</pa-button>
+  </div>
+
+  <div class="auth_button">
+    <pa-button border (click)="onRegister()" *ngIf="allowRegister">login.button.register</pa-button>
+  </div>
+
+  <div class="auth_button" *ngIf="allowSocial">
+    <pa-button border *ngFor="let provider of providers" class="{{provider}}-social" (click)="socialLogin(provider)" type="submit">{{provider}}</pa-button>
+  </div>
+</grange-auth>

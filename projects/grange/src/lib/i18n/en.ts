@@ -38,8 +38,12 @@ export const GRANGE_TRANSLATIONS_EN = {
     login: {
         username: 'Username',
         password: 'Password',
-        button: 'Login',
-        token: 'Token',
+        button: {
+          login: 'Login',
+          token: 'Token',
+          forgot: 'Recover',
+          register: 'Register'
+        },
         'use-token': 'Use token',
     }
 };

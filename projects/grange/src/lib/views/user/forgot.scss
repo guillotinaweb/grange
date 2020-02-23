@@ -1,0 +1,15 @@
+@import "../../style";
+
+:host {
+    display: block;
+    margin: rythm(2) auto;
+    width: 400px;
+
+    .error {
+        color: $red;
+    }
+
+    footer {
+        text-align: center;
+    }
+}

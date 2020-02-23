@@ -9,16 +9,32 @@ databases:
       read_only: false
       pool_size: 100
 store_json: true
+allow_register: true
+cache:
+  driver: guillotina.contrib.redis
+  updates_channel: guillotina
 applications:
   - guillotina_cms
   - guillotina.contrib.cache
   - guillotina.contrib.catalog.pg
+  - guillotina.contrib.dbusers
+  - guillotina.contrib.mailer
+  - guillotina.contrib.redis
+  - guillotina.contrib.pubsub
+  - guillotina.contrib.email_validation
+  - guillotina.contrib.templates
+  - guillotina.contrib.redis_session
+  - guillotina_authentication
+host: 0.0.0.0
 address: 8081
 static:
   - favicon.png: static/favicon.png
   - assets: guillotina:static/assets
 root_user:
   password: root
+mailer:
+  utility:
+    guillotina.contrib.mailer.utility.PrintingMailerUtility
 auth_extractors:
   - guillotina.auth.extractors.CookiePolicy
   - guillotina.auth.extractors.BearerAuthPolicy
@@ -27,8 +43,10 @@ auth_extractors:
 auth_token_validators:
   - guillotina.auth.validators.SaltedHashPasswordValidator
   - guillotina.auth.validators.JWTValidator
+auth_user_identifiers:
+  - guillotina.contrib.dbusers.users.DBUserIdentifier
 redis:
-  host: localhost
+  host: redis
   port: 6379
 jwt:
   secret: secret
@@ -92,7 +110,6 @@ contents:
     behaviors:
       - guillotina.behaviors.dublincore.IDublinCore
       - guillotina_cms.interfaces.base.ICMSBehavior
-      - guillotina_cms.interfaces.tiles.ITiles
       - guillotina_cms.interfaces.Imycontextdata
     properties:
       json_example:

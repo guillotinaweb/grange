@@ -1,0 +1,13 @@
+@import "../../style";
+
+:host {
+    h1, footer {
+      text-align: center;
+      width: 100%;
+    }
+    .auth_button {
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      text-align: center;
+    }
+}

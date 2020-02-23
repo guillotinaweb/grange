@@ -8,9 +8,14 @@ import { WidgetRegistry, SchemaFormModule } from 'ngx-schema-form';
 import { GrangeFormWidgetRegistry, GrangeFormModule } from 'grange-form';
 import { StateTraverserModule } from 'ngx-state-traverser';
 import { GrangeStateModule } from './state/module';
-import { LoginView } from './views/login';
 import { FolderView } from './views/folder';
 import { ViewView } from './views/view';
+
+import { LoginView } from './views/user/login';
+import { ForgotView } from './views/user/forgot';
+import { ValidationView } from './views/user/validation';
+import { RegisterView } from './views/user/register';
+import { CallbackView } from './views/user/callback';
 import {
     TextFieldModule,
     ButtonModule,
@@ -26,18 +31,24 @@ import { EditView } from './views/edit';
 import { ActionsComponent } from './components/actions';
 import { ToastContainerComponent } from './components/toast-container';
 import { BreadcrumbsComponent } from './components/breadcrumbs';
+import { BaseAuthComponent } from './components/base-auth';
 
 const VIEWS = [
     AddView,
     EditView,
     FolderView,
     LoginView,
+    ForgotView,
+    ValidationView,
+    CallbackView,
+    RegisterView,
     ViewView,
 ];
 const COMPONENTS = [
     ActionsComponent,
     ToastContainerComponent,
     BreadcrumbsComponent,
+    BaseAuthComponent,
 ];
 @NgModule({
     declarations: [

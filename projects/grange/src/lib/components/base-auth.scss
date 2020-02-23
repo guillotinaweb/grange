@@ -5,6 +5,15 @@
     margin: rythm(2) auto;
     width: 400px;
 
+    .auth_header {
+      text-align: center;
+      cursor: pointer;
+      img {
+        max-width: 200px;
+        margin: 20px auto;
+      }
+    }
+
     .error {
         color: $red;
     }
@@ -13,3 +22,5 @@
         text-align: center;
     }
 }
+
+

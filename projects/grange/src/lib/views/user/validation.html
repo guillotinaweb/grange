@@ -1,0 +1,11 @@
+<grange-auth>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <sf-form [schema]="schema" (onChange)="updateModel($event)"></sf-form>
+
+    <footer>
+      <pa-button border type="submit">login.button.submit</pa-button>
+    </footer>
+
+  </form>
+</grange-auth>

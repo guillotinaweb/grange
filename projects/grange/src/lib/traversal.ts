@@ -5,9 +5,13 @@ import { catchError } from 'rxjs/operators';
 import { APIService, ResourceService, Error, ConfigurationService} from 'grange-core';
 import { Grange } from './grange.service';
 import { AddView } from './views/add';
-import { LoginView } from './views/login';
 import { ViewView } from './views/view';
 import { EditView } from './views/edit';
+import { LoginView } from './views/user/login';
+import { ForgotView } from './views/user/forgot';
+import { ValidationView } from './views/user/validation';
+import { RegisterView } from './views/user/register';
+import { CallbackView } from './views/user/callback';
 import { FolderView } from './views/folder';
 
 @Injectable()
@@ -56,6 +60,10 @@ export class GrangeViews {
         this.grange.traverser.addView('add', 'folderish', AddView);
         this.grange.traverser.addView('edit', '*', EditView);
         this.grange.traverser.addView('login', '*', LoginView);
+        this.grange.traverser.addView('validation', '*', ValidationView);
+        this.grange.traverser.addView('forgot', '*', ForgotView);
+        this.grange.traverser.addView('register', '*', RegisterView);
+        this.grange.traverser.addView('callback', '*', CallbackView);
         this.grange.traverser.addView('view', '*', ViewView);
         this.grange.traverser.addView('view', 'folderish', FolderView);
     }
