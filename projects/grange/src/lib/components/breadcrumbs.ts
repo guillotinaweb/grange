@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Grange } from '../grange.service';
 import { BaseComponent } from './base';
-import { TraverserSelectors } from 'ngx-state-traverser';
+import { TraverserSelectors } from '@guillotinaweb/ngx-state-traverser';
 
 @Component({
     selector: 'grange-breadcrumbs',

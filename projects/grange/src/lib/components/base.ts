@@ -1,10 +1,10 @@
 import { OnDestroy } from '@angular/core';
 import { select } from '@ngrx/store';
-import { TraverserSelectors } from 'ngx-state-traverser';
+import { TraverserSelectors } from '@guillotinaweb/ngx-state-traverser';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Grange } from '../grange.service';
-import { Resource } from 'grange-core';
+import { Resource } from '@guillotinaweb/grange-core';
 
 export class BaseComponent implements OnDestroy {
     destroy = new Subject();
