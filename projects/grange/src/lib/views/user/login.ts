@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Grange } from '../../grange.service';
-import { LoginInfo } from 'grange-core';
-import { ConfigurationService } from 'grange-core';
-import { markForCheck } from 'pastanaga-angular';
+import { LoginInfo } from '@guillotinaweb/grange-core';
+import { ConfigurationService } from '@guillotinaweb/grange-core';
+import { markForCheck } from '@guillotinaweb/pastanaga-angular';
 
 @Component({
   selector: 'grange-login',

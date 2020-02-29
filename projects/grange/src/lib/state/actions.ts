@@ -10,5 +10,5 @@ export class SetBreadcrumbs implements Action {
     constructor(readonly payload: Link[]) {}
 }
 
-export type Action =
+export type GrangeAction =
     | SetBreadcrumbs;

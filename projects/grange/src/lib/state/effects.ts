@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import { TraverserActions } from 'ngx-state-traverser';
+import { TraverserActions } from '@guillotinaweb/ngx-state-traverser';
 
 @Injectable()
 export class GrangeEffects {

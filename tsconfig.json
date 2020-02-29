@@ -22,19 +22,19 @@
             "angular-traversal": [
                 "develop/angular-traversal/projects/traversal/src/lib"
             ],
-            "grange-core": [
+            "@guillotinaweb/grange-core": [
                 "develop/grange-core/projects/grange-core/src"
             ],
-            "grange-form": [
+            "@guillotinaweb/grange-form": [
                 "develop/grange-form/projects/grange-form/src/lib"
             ],
             "ngx-schema-form": [
                 "develop/ngx-schema-form/projects/schema-form/src/lib"
             ],
-            "ngx-state-traverser": [
+            "@guillotinaweb/ngx-state-traverser": [
                 "develop/ngx-state-traverser/projects/ngx-state-traverser/src"
             ],
-            "pastanaga-angular": [
+            "@guillotinaweb/pastanaga-angular": [
                 "develop/pastanaga-angular/projects/pastanaga/src"
             ]
         }
