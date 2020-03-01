@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Toaster } from 'pastanaga-angular';
+import { Toaster } from '@guillotinaweb/pastanaga-angular';
 
 @Component({
     selector: 'grange-toast-container',

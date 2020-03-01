@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseView } from './base';
 import { Grange } from '../grange.service';
 import { concatMap, map, take } from 'rxjs/operators';
-import { Toaster } from 'pastanaga-angular';
+import { Toaster } from '@guillotinaweb/pastanaga-angular';
 
 const FIELDS_EXCLUDE = [
     'type_name',

@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoadingInterceptor } from 'grange-core';
+import { LoadingInterceptor } from '@guillotinaweb/grange-core';
 import { Resolver, Marker, Normalizer, TraversalModule } from 'angular-traversal';
 import { RESTAPIResolver, TypeMarker, FullPathNormalizer } from './traversal';
 import { WidgetRegistry, SchemaFormModule } from 'ngx-schema-form';
-import { GrangeFormWidgetRegistry, GrangeFormModule } from 'grange-form';
-import { StateTraverserModule } from 'ngx-state-traverser';
+import { GrangeFormWidgetRegistry, GrangeFormModule } from '@guillotinaweb/grange-form';
+import { StateTraverserModule } from '@guillotinaweb/ngx-state-traverser';
 import { GrangeStateModule } from './state/module';
 import { FolderView } from './views/folder';
 import { ViewView } from './views/view';
@@ -23,7 +23,7 @@ import {
     TranslateModule,
     ToasterModule,
     TooltipModule
-} from 'pastanaga-angular';
+} from '@guillotinaweb/pastanaga-angular';
 import { FormsModule } from '@angular/forms';
 import { GRANGE_TRANSLATIONS_EN } from './i18n/en';
 import { AddView } from './views/add';
@@ -82,7 +82,7 @@ export class GrangeModule {
 
 @NgModule()
 export class GrangeRootModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<GrangeModule> {
         return {
             ngModule: GrangeModule,
             providers: [

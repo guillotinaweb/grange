@@ -7,7 +7,8 @@ import { GrangeRootModule } from '../../../grange/src';
 import { TraversalModule } from 'angular-traversal';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ButtonModule } from 'pastanaga-angular';
+import { ButtonModule } from '@guillotinaweb/pastanaga-angular';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { ButtonModule } from 'pastanaga-angular';
             logOnly: environment.production,
             maxAge: 25
         }),
+        AngularSvgIconModule.forRoot(),
         ButtonModule,
     ],
     providers: [

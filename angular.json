@@ -10,11 +10,16 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/grange/tsconfig.lib.json",
-            "project": "projects/grange/ng-package.json"
-          }
+            "builder": "@angular-devkit/build-ng-packagr:build",
+            "options": {
+                "tsConfig": "projects/grange/tsconfig.lib.json",
+                "project": "projects/grange/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "projects/grange/tsconfig.lib.prod.json"
+                }
+            }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -57,7 +62,7 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.json",
-            "aot": false,
+            "aot": true,
             "stylePreprocessorOptions": {
                 "includePaths": [
                     "src/develop/pastanaga-angular/projects/pastanaga/src/lib/styles"
@@ -90,7 +95,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

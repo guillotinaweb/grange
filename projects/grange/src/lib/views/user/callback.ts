@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Grange } from '../../grange.service';
-import { markForCheck } from 'pastanaga-angular';
+import { markForCheck } from '@guillotinaweb/pastanaga-angular';
 
 @Component({
   selector: 'grange-callback',

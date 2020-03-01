@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Marker, Normalizer, Resolver } from 'angular-traversal';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { APIService, ResourceService, Error, ConfigurationService} from 'grange-core';
+import { APIService, ResourceService, Error, ConfigurationService} from '@guillotinaweb/grange-core';
 import { Grange } from './grange.service';
 import { AddView } from './views/add';
 import { ViewView } from './views/view';
