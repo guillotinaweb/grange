@@ -65,7 +65,7 @@
             "aot": true,
             "stylePreprocessorOptions": {
                 "includePaths": [
-                    "src/develop/pastanaga-angular/projects/pastanaga/src/lib/styles"
+                    "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
                 ]
             },
             "assets": [
@@ -73,7 +73,7 @@
               "projects/demo/src/assets",
               {
                 "glob": "**/*",
-                "input": "./src/develop/pastanaga-angular/projects/pastanaga/src/assets",
+                "input": "./node_modules/@guillotinaweb/pastanaga-angular/lib/assets",
                 "output": "assets"
               }
             ],

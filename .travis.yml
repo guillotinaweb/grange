@@ -1,0 +1,42 @@
+language: node_js
+node_js:
+- 12.4.0
+cache:
+  directories:
+  - node_modules
+dist: trusty
+install:
+- npm install
+script:
+- npm run build
+notifications:
+  email:
+  - ebrehault@gmail.com
+jobs:
+  include:
+    - stage: Tagging
+      if: (branch = master) AND (tag IS blank)
+      after_success: source ./deploy.sh
+      deploy:
+        provider: releases
+        api_key:
+          secure: SLOEZ5rIZ5SOaYDT3ko1xw3NFRJHRN9LyKrL5A5tiriT4Hd8QwBjqiHS5N9liGoIm7PzlUhU6+YP9nKACuATgUlBRVHQ5K8zvb55W6GsKhLbm3ZPzjO1Il9li1thKCEBQfvJQ77eezolxlYUfsvAiQiRFZ/ZX9AEB2LovYJ3I+b9/G1+uaqLF8C4RG+8QXcVRW9uQUvvmde0I1lwL7vhe+mpVaaUGCmaXc1Bl+uUPxNEbwFui6DYq6ytWcO11xZbjXu1Ott33YluKs9lTtMYCnF1yP3ktaQpbYnkPlUZDBbNiiccmmaEvHSpKEeW2QmORwUGwad16blC5lj9kBlkQ+MucKJRBFc1l/OoflOG6GwUK7Hk2Z18GzKdJkZZva6cty8dN16xW44puH8nvxIv2RjSy6jw6MJzmbSep9c+Vie4Kwise96N68OGJheintUCwDzG5HYUGGrBF4eMAAxLr1RWpToIBiTlYpcp4u/hFzwdZcdxOFqj8k8uq/r0BfrpP6cCSijYVOik41wleA2q5aKVpEcCKUS0ihOvRJsr8pf41L76ozusZJ++PJej6YnvY0SP8RwIR5QoU/CTflIBQUV/bWUSsMA4UBGEQQaKdYSSnBA5hWDdxIHV4rNzDE4CNCJceHNIWzSbo5hLMw7oGCJSbhRajQSOTqtNW/TkahI=
+        name: Build $PACKAGE_VERSION
+        on:
+          repo: guillotinaweb/grange
+          branch: master
+          tags: true
+    - stage: NPM release
+      if: tag IS present
+      before_deploy: cd dist/grange
+      deploy:
+        provider: npm
+        edge: true
+        email: ebrehault@gmail.com
+        skip_cleanup: true
+        api_key:
+          secure: XyNiDOqgqMV6gg80mx3jqIdox5p6qcRaXwouRY2bWAWpVDilfm7wzION4xI8/CWFpHqyXVE6Eohb1UyWlTGBpSXOl/3y2bfwbOpAmp+ld16wR9H2UMHntf6V0MfT0QvGXmsggmA/XW1tYVCrpAFOdKCZcctukJe4zdWAOYoFYQxPT+zPdt+FO2kBO0/HbDSyzglgWJS0csiTLSQy2ISoZzt9hHsNd3RFy7TQVCH//NkQ9BIkDU5rhqKo636YkJ4w2mxuyXUDdxFzUOBC5d8kNY6Sp989dpXBT7bk+/iIKFzTHjRN4wmQ2bqLTDLQpQfBoOij/dvniDvT6It6qGSz5VAR/ADZftjXCx9+s852TYVrhqzhALLzRYqUXSo/AjVewanf0bJQ45gDuB9vZEi1KOZUrmODo6IjJsjyq59HUpoM7Kv8ab4NNe6i4Djhhzj8UquoT3ooXhoYkxEwT0Gal1D9Gx9XUtvBF2QY6lcK1sDSuXmfRI+uGyQDkxtU/Q5uJ+67qGamu9zSs916K+x2D65P0IL0rWe+RafW7E3qFYMZ8yrPDOluMGnmU5JOeE6PU0pEyw9bD04gNrePtCyZyaQCFtwSb8teMQLosbA/111EtigNLY8irQEe1u4iQ6e1qGgpk9uL4YTIpoyQQS/GZLyrS48tycTNWbTBOVijdWU=
+        on:
+          tags: true
+          repo: guillotinaweb/grange
+          branch: master

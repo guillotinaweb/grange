@@ -1,3 +1,8 @@
+# 1.2.1 (2020-05-03)
+
+### Improvement
+- Publish to NPM
+
 # 1.2.0 (2020-02-29)
 
 ### Breaking change

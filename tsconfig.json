@@ -26,16 +26,13 @@
                 "develop/grange-core/projects/grange-core/src"
             ],
             "@guillotinaweb/grange-form": [
-                "develop/grange-form/projects/grange-form/src/lib"
+                "develop/grange-form/projects/grange-form/src"
             ],
             "ngx-schema-form": [
                 "develop/ngx-schema-form/projects/schema-form/src/lib"
             ],
             "@guillotinaweb/ngx-state-traverser": [
                 "develop/ngx-state-traverser/projects/ngx-state-traverser/src"
-            ],
-            "@guillotinaweb/pastanaga-angular": [
-                "develop/pastanaga-angular/projects/pastanaga/src"
             ]
         }
     },

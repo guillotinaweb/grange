@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve demo",
-    "build": "ng build --prod grange",
+    "build": "ng build --prod grange && cp ./README.md ./dist/grange",
     "test": "jest",
     "lint": "ng lint",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "get_version": "cat ./projects/grange/package.json | grep version  | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'"
   },
   "private": true,
   "dependencies": {
@@ -21,13 +22,18 @@
     "@angular/platform-browser-dynamic": "~9.0.4",
     "@angular/router": "~9.0.4",
     "@briebug/jest-schematic": "^2.1.0",
+    "@guillotinaweb/grange-core": "latest",
+    "@guillotinaweb/grange-form": "latest",
+    "@guillotinaweb/ngx-state-traverser": "latest",
+    "@guillotinaweb/pastanaga-angular": "^1.17.18",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^8.4.0",
     "@ngrx/store": "^8.4.0",
     "angular-svg-icon": "^8.0.0",
+    "angular-traversal": "latest",
     "date-fns": "^2.9.0",
     "jexl": "^2.2.2",
-    "medium-editor": "^5.23.3",
+    "ngx-schema-form": "latest",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "z-schema": "^4.2.1",
