@@ -6,9 +6,9 @@ import { takeUntil } from 'rxjs/operators';
 import { Grange } from '../grange.service';
 import { Resource } from '@guillotinaweb/grange-core';
 
-export class BaseView implements OnDestroy {
+export class BaseViewModel<T extends Resource> implements OnDestroy {
     destroy = new Subject();
-    context = TraverserSelectors.TraverserContext<Resource>(this.grange.store).pipe(takeUntil(this.destroy));
+    context = TraverserSelectors.TraverserContext<T>(this.grange.store).pipe(takeUntil(this.destroy));
     contextPath = this.grange.store.pipe(
         takeUntil(this.destroy),
         select(TraverserSelectors.getContextPath)
@@ -41,4 +41,7 @@ export class BaseView implements OnDestroy {
         this.destroy.next();
         this.destroy.complete();
     }
+}
+
+export class BaseView extends BaseViewModel<Resource> {
 }
