@@ -1,6 +1,23 @@
 {
-  "name": "grange",
+  "name": "@guillotinaweb/grange",
   "version": "1.2.1",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Brehault",
+    "email": "ebrehault@gmail.com"
+  },
+  "description": "The Guillotina REST API aNGular Environment",
+  "keywords": [
+    "angular",
+    "guillotinaweb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillotinaweb/grange"
+  },
+  "bugs": {
+    "url": "https://github.com/guillotinaweb/grange/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.4",
     "@angular/cdk": "~9.0.1",
@@ -13,5 +30,9 @@
     "angular-traversal": "latest",
     "date-fns": "^2.9.0",
     "ngx-schema-form": "latest"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }

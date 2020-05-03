@@ -20,7 +20,7 @@ jobs:
       deploy:
         provider: releases
         api_key:
-          secure: SLOEZ5rIZ5SOaYDT3ko1xw3NFRJHRN9LyKrL5A5tiriT4Hd8QwBjqiHS5N9liGoIm7PzlUhU6+YP9nKACuATgUlBRVHQ5K8zvb55W6GsKhLbm3ZPzjO1Il9li1thKCEBQfvJQ77eezolxlYUfsvAiQiRFZ/ZX9AEB2LovYJ3I+b9/G1+uaqLF8C4RG+8QXcVRW9uQUvvmde0I1lwL7vhe+mpVaaUGCmaXc1Bl+uUPxNEbwFui6DYq6ytWcO11xZbjXu1Ott33YluKs9lTtMYCnF1yP3ktaQpbYnkPlUZDBbNiiccmmaEvHSpKEeW2QmORwUGwad16blC5lj9kBlkQ+MucKJRBFc1l/OoflOG6GwUK7Hk2Z18GzKdJkZZva6cty8dN16xW44puH8nvxIv2RjSy6jw6MJzmbSep9c+Vie4Kwise96N68OGJheintUCwDzG5HYUGGrBF4eMAAxLr1RWpToIBiTlYpcp4u/hFzwdZcdxOFqj8k8uq/r0BfrpP6cCSijYVOik41wleA2q5aKVpEcCKUS0ihOvRJsr8pf41L76ozusZJ++PJej6YnvY0SP8RwIR5QoU/CTflIBQUV/bWUSsMA4UBGEQQaKdYSSnBA5hWDdxIHV4rNzDE4CNCJceHNIWzSbo5hLMw7oGCJSbhRajQSOTqtNW/TkahI=
+          secure: AnWeTpX9vC/IBw+JayoZHhfm6vUine28cg+R1E/6tIvhoNwbmQk6WWmWX/SLei6db8KVzpexh1mShvo9xcv+FWOYz5ms2y7YB3E4BPVP6+lBPmFByjGj6lLfR/jhIAfG1DFiffdE5PBVyrknKCD2Y8+gh56wr0oiSE6g9xdJRZilpg3qPzez1x0r802A87Jd3cZIdQEzLGyaCGTm9POdoLcGsnjL4SAi0cqAvcNiziMwybSyU884uBX/sYjrxMwGsbN23CBD8KWMysNsJO8eSSRlASRlPq+5iBNyCndsjzRgVfZy1HUKljXiIrZNcjlA4vVQP9BieHkAn+6WununLMlUJBRdb4s59vaISpf8ACVg8SLIkiIkj8I4Rajob46A3s4eRmfJpkQuYe+tJFyCvXntU88isBoJGn9QoKjaP27RyTBtmxkmzKwlkjNAWsLEXSJxCJrDKMAcBuYbg0UKEkZKyPDgz6fwkW9RsMnXiuawY5xFTjicU39/LDwcWmP8c5sVw6aOaqQ91qf0YF6KxyKH8IzmxBS8coGq2gvat4g4rAh9UWkZbLeJhIIuH/jAr0WhpWOjswRJk0igKuZfxZS0XhTvJIjE1x+26XXU3cwL2cxTbZKpbOwfZvTik9+8QPrW9OBelrUAuJaiUC3EXxPN4SyiJ4jChMdptWdoiyI=
         name: Build $PACKAGE_VERSION
         on:
           repo: guillotinaweb/grange
@@ -35,8 +35,9 @@ jobs:
         email: ebrehault@gmail.com
         skip_cleanup: true
         api_key:
-          secure: XyNiDOqgqMV6gg80mx3jqIdox5p6qcRaXwouRY2bWAWpVDilfm7wzION4xI8/CWFpHqyXVE6Eohb1UyWlTGBpSXOl/3y2bfwbOpAmp+ld16wR9H2UMHntf6V0MfT0QvGXmsggmA/XW1tYVCrpAFOdKCZcctukJe4zdWAOYoFYQxPT+zPdt+FO2kBO0/HbDSyzglgWJS0csiTLSQy2ISoZzt9hHsNd3RFy7TQVCH//NkQ9BIkDU5rhqKo636YkJ4w2mxuyXUDdxFzUOBC5d8kNY6Sp989dpXBT7bk+/iIKFzTHjRN4wmQ2bqLTDLQpQfBoOij/dvniDvT6It6qGSz5VAR/ADZftjXCx9+s852TYVrhqzhALLzRYqUXSo/AjVewanf0bJQ45gDuB9vZEi1KOZUrmODo6IjJsjyq59HUpoM7Kv8ab4NNe6i4Djhhzj8UquoT3ooXhoYkxEwT0Gal1D9Gx9XUtvBF2QY6lcK1sDSuXmfRI+uGyQDkxtU/Q5uJ+67qGamu9zSs916K+x2D65P0IL0rWe+RafW7E3qFYMZ8yrPDOluMGnmU5JOeE6PU0pEyw9bD04gNrePtCyZyaQCFtwSb8teMQLosbA/111EtigNLY8irQEe1u4iQ6e1qGgpk9uL4YTIpoyQQS/GZLyrS48tycTNWbTBOVijdWU=
+          secure: N1c+fdMKX3YLTSTXM1zJ0JDojugB6qAx+fcq9IBS07iF34jJni0oal8XiR207a6NKyr018tQFhgOUEeuS/dbcx6cWWNFWahiFSISakFunlq6vGYJd2oHDkyHJZinKPI53oJc1UP8CqL0juXak2oyN/SXD6GZZ79XRQ2CYg6Es4tdPOyVBS+e4DGViJbGgcrbnvD4LA3KQbGzp79CGhu2JvHS4UsNq73B4Y8tp4hC2UMRwBp5nr2zEmyCPLSiqdBPJZyn5mMLIWOJoGeKDuZ3UF9o+V2xypg5WQpORWyHwi0VTUTLOt79VRwz8XUKZXYxsw6SkjFQmVGDk2XWGm/Uz17BlCaI/3zYONMO6nf6U8HpYqk5hfjNC+bxSuuW/HabzcUa3qMA//X5HZ/eG/e/WCFs830gkRvZmHVdr7pEA9cvBzoG2CnkX6nyL1VpkUrtrYMlpmA48vWXNC8Mea83fNRihqEVa9McBAoQYPto1kClgka0olOl66WCuIH2wK7IBG7o6UMrFhGQQIwKngtcFsxJjlAJigiyTE83fzfYVu4AJHV3IMCLFQllSa38jc8PAV9HzqjDDzf3Recrj0VzvxPo+lWc9/JJtOPYJrOTHBPe0nThiY05uD9tdV9nu8mhwA7Wl9Z6iqi0Fo/zZ8d7U1awBPAMPMcW7JXDhacOXmk=
         on:
           tags: true
           repo: guillotinaweb/grange
           branch: master
+
