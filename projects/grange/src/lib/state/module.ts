@@ -6,7 +6,7 @@ import { GrangeEffects } from './effects';
 
 @NgModule({
     imports: [
-        ...store,
+        // ...store,
         EffectsModule.forRoot([GrangeEffects]),
     ]
 })

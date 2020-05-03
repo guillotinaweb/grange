@@ -1,7 +1,18 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/grange",
-  "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/grange",
+    "lib": {
+        "entryFile": "src/public-api.ts",
+        "umdModuleIds": {
+            "@guillotinaweb/grange-core": "@guillotinaweb/grange-core",
+            "@guillotinaweb/grange-form": "@guillotinaweb/grange-form",
+            "@guillotinaweb/ngx-state-traverser": "@guillotinaweb/ngx-state-traverser",
+            "@guillotinaweb/pastanaga-angular": "@guillotinaweb/pastanaga-angular",
+            "angular-svg-icon": "angular-svg-icon",
+            "angular-traversal": "angular-traversal",
+            "jexl": "jexl",
+            "ngx-schema-form": "ngx-schema-form",
+            "z-schema": "z-schema"
+        }
+    }
 }

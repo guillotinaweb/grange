@@ -43,7 +43,20 @@ The good thing about a Grange app is it is totally neutral about the Guillotina 
 Install Grange in the Angular project:
 
 ```
-npm install @guillotinaweb/grange
+npm install @guillotinaweb/grange @guillotinaweb/grange-core @guillotinaweb/grange-form @guillotinaweb/ngx-state-traverser @guillotinaweb/pastanaga-angular @ngrx/core @ngrx/core@8.6.0 @ngrx/effects@8.6.0 angular-svg-icon angular-traversal jexl ngx-schema-form z-schema @angular/cdk date-fns
+```
+
+Run Guillotina:
+```
+docker-compose -f g-api/docker-compose.yaml up
+```
+
+Create a Guillotina container for our project:
+```
+curl -XPOST --user root:root http://127.0.0.1:8080/db -d '{
+  "@type": "Container",
+  "id": "site"
+}'
 ```
 
 Add an empty `pastanaga-overrides.scss` file in `/src` (it might be used to override Pastanaga defaults).
@@ -66,14 +79,12 @@ import { StoreModule } from '@ngrx/store';
         {
             provide: 'CONFIGURATION',
             useValue: {
-                BACKEND_URL: 'http://my-g-server/db/container',
+                BACKEND_URL: 'http://127.0.0.1:8080/db/site',
                 CLIENT_TIMEOUT: 5000,
             },
         },
     ],
 ```
-
-Note: if we do not have any container yet, we can create one by using the Executioner: http://my-g-server/+admin
 
 Initialize the default views in `app.component.ts`:
 
@@ -93,11 +104,29 @@ Set the `traverser-outlet` in `app.component.html`:
 <traverser-outlet></traverser-outlet>
 ```
 
-And load the Pastanaga fonts in `styles.scss`:
+Load the Pastanaga fonts in `styles.scss`:
 ```scss
-@import "~/pastanaga-angular/styles/common-reset";
-$font-path: "~/pastanaga-angular/assets/fonts";
-@import "~/pastanaga-angular/styles/fonts";
+@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/common-reset";
+$font-path: "../node_modules/@guillotinaweb/pastanaga-angular/lib/assets/fonts";
+@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/fonts";
+```
+
+Add the Pastanaga path in the `angular.json` style pre-processing and assets:
+```json
+"stylePreprocessorOptions": {
+    "includePaths": [
+        "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
+    ]
+},
+"assets": [
+    "src/favicon.ico",
+    "src/assets",
+    {
+        "glob": "**/*",
+        "input": "./node_modules/@guillotinaweb/pastanaga-angular/lib/assets",
+        "output": "assets"
+    }
+],
 ```
 
 ## Reference
@@ -262,7 +291,7 @@ Then create the `mrs.developer.json`:
         "url": "git@github.com:guillotinaweb/grange.git",
         "https": "https://github.com/guillotinaweb/grange.git",
         "path": "/projects/grange/src",
-        "branch": "pastanaga-variables-import"
+        "branch": "master"
     },
     "grange-core": {
         "url": "git@github.com:guillotinaweb/grange-core.git",
@@ -287,12 +316,6 @@ Then create the `mrs.developer.json`:
         "url": "git@github.com:guillotinaweb/ngx-state-traverser.git",
         "https": "https://github.com/guillotinaweb/ngx-state-traverser.git",
         "branch": "master"
-    },
-    "pastanaga-angular": {
-        "url": "git@github.com:plone/pastanaga-angular.git",
-        "https": "https://github.com/plone/pastanaga-angular.git",
-        "path": "/projects/pastanaga/src",
-        "branch": "pastanaga-variables-import"
     }
 }
 ```
@@ -300,7 +323,7 @@ Then create the `mrs.developer.json`:
 Install the NPM dependencies:
 
 ```
-npm install angular-svg-icon jexl medium-editor rxjs tslib z-schema @angular/cdk @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools
+npm install @guillotinaweb/pastanaga-angular @ngrx/core @ngrx/core@8.6.0 @ngrx/effects@8.6.0 angular-svg-icon angular-traversal jexl ngx-schema-form z-schema @angular/cdk date-fns
 ```
 
 Add the `pastanaga-overrides.scss` file in `/src` (it might be empty but should exist).
@@ -310,7 +333,7 @@ Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
 ```json
 "stylePreprocessorOptions": {
     "includePaths": [
-        "src/develop/pastanaga-angular/projects/pastanaga/src/lib/styles"
+        "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
     ]
 },
 ...
@@ -318,7 +341,7 @@ Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
     ...
     {
         "glob": "**/*",
-        "input": "src/develop/pastanaga-angular/projects/pastanaga/src/assets",
+        "input": "./node_modules/@guillotinaweb/pastanaga-angular/assets",
         "output": "assets"
     },
 ]
@@ -327,9 +350,9 @@ Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
 Make the proper imports in `src/styles.scss`:
 
 ```scss
-@import "./develop/pastanaga-angular/projects/pastanaga/src/lib/styles/common-reset";
-$font-path: "./develop/pastanaga-angular/projects/pastanaga/src/assets/fonts";
-@import "./develop/pastanaga-angular/projects/pastanaga/src/lib/styles/fonts";
+@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/common-reset";
+$font-path: "../node_modules/@guillotinaweb/pastanaga-angular/lib/assets/fonts";
+@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/fonts";
 ```
 
 ## Running Guillotina locally

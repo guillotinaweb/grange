@@ -3,40 +3,33 @@
         "path": "/projects/traversal/src/lib",
         "url": "git@github.com:guillotinaweb/angular-traversal.git",
         "https": "https://github.com/guillotinaweb/angular-traversal.git",
-        "tag": "1.4.3"
+        "tag": "1.5.3"
     },
     "grange-core": {
         "package": "@guillotinaweb/grange-core",
         "url": "git@github.com:guillotinaweb/grange-core.git",
         "https": "https://github.com/guillotinaweb/grange-core.git",
         "path": "/projects/grange-core/src",
-        "tag": "1.2.0"
+        "tag": "1.2.1"
     },
     "grange-form": {
         "package": "@guillotinaweb/grange-form",
-        "path": "/projects/grange-form/src/lib",
+        "path": "/projects/grange-form/src",
         "url": "git@github.com:guillotinaweb/grange-form.git",
         "https": "https://github.com/guillotinaweb/grange-form.git",
-        "tag": "1.1.0"
+        "tag": "1.1.1"
     },
     "ngx-schema-form": {
         "path": "/projects/schema-form/src/lib",
         "url": "git@github.com:guillotinaweb/ngx-schema-form.git",
         "https": "https://github.com/guillotinaweb/ngx-schema-form.git",
-        "tag": "2.5.0"
+        "tag": "2.5.2"
     },
     "ngx-state-traverser": {
         "package": "@guillotinaweb/ngx-state-traverser",
         "path": "/projects/ngx-state-traverser/src",
         "url": "git@github.com:guillotinaweb/ngx-state-traverser.git",
         "https": "https://github.com/guillotinaweb/ngx-state-traverser.git",
-        "tag": "1.2.0"
-    },
-    "pastanaga-angular": {
-        "package": "@guillotinaweb/pastanaga-angular",
-        "url": "git@github.com:plone/pastanaga-angular.git",
-        "https": "https://github.com/plone/pastanaga-angular.git",
-        "path": "/projects/pastanaga/src",
-        "tag": "1.12.3"
+        "tag": "1.2.1"
     }
 }

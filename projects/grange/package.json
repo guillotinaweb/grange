@@ -1,9 +1,17 @@
 {
   "name": "grange",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "peerDependencies": {
     "@angular/common": "^9.0.4",
     "@angular/cdk": "~9.0.1",
-    "@angular/core": "^9.0.4"
+    "@angular/core": "^9.0.4",
+    "@guillotinaweb/grange-core": "latest",
+    "@guillotinaweb/grange-form": "latest",
+    "@guillotinaweb/ngx-state-traverser": "latest",
+    "@guillotinaweb/pastanaga-angular": "latest",
+    "angular-svg-icon": "^8.0.0",
+    "angular-traversal": "latest",
+    "date-fns": "^2.9.0",
+    "ngx-schema-form": "latest"
   }
 }

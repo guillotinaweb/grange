@@ -1,8 +1,8 @@
 <grange-actions></grange-actions>
 <h2>{{ (context | async).title }}</h2>
 <p>{{ (context | async).description }}</p>
-<div *ngIf="!(children | async) || (children | async).length === 0" translate>folder.empty</div>
-<ul *ngIf="!!(children | async) && (children | async).length > 0">
+<div *ngIf="!(children | async) || (children | async)?.length === 0" translate>folder.empty</div>
+<ul *ngIf="!!(children | async) && (children | async)?.length > 0">
     <li *ngFor="let child of (children | async)">
         <pa-button-link [traverseTo]="child['@id']">{{ child.title }}</pa-button-link>
     </li>
