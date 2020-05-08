@@ -40,28 +40,27 @@ The good thing about a Grange app is it is totally neutral about the Guillotina 
 
 ## Building a basic Grange app
 
-Install Grange in the Angular project:
+Install Grange in our Angular project:
 
 ```
-npm install @guillotinaweb/grange @guillotinaweb/grange-core @guillotinaweb/grange-form @guillotinaweb/ngx-state-traverser @guillotinaweb/pastanaga-angular @ngrx/core @ngrx/core@8.6.0 @ngrx/effects@8.6.0 angular-svg-icon angular-traversal jexl ngx-schema-form z-schema @angular/cdk date-fns
+npm install @guillotinaweb/grange-schematic
+ng add @guillotinaweb/grange-schematic
 ```
 
-Run Guillotina:
+Run Guillotina (it requires Docker):
 ```
-docker-compose -f g-api/docker-compose.yaml up
+npm run guillotina
 ```
 
 Create a Guillotina container for our project:
 ```
-curl -XPOST --user root:root http://127.0.0.1:8080/db -d '{
+curl -XPOST --user root:root http://127.0.0.1:8081/db -d '{
   "@type": "Container",
   "id": "site"
 }'
 ```
 
-Add an empty `pastanaga-overrides.scss` file in `/src` (it might be used to override Pastanaga defaults).
-
-Import in the `app.module.ts` the Grange module plus a minimal NgRx store, and provide the Guillotina backend URL to an existing container:
+Import in the `app.module.ts` the Grange module plus a minimal NgRx store, and provide the Guillotina backend URL to our container:
 
 ```typescript
 import { GrangeRootModule } from '@guillotinaweb/grange';
@@ -104,30 +103,7 @@ Set the `traverser-outlet` in `app.component.html`:
 <traverser-outlet></traverser-outlet>
 ```
 
-Load the Pastanaga fonts in `styles.scss`:
-```scss
-@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/common-reset";
-$font-path: "../node_modules/@guillotinaweb/pastanaga-angular/lib/assets/fonts";
-@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/fonts";
-```
-
-Add the Pastanaga path in the `angular.json` style pre-processing and assets:
-```json
-"stylePreprocessorOptions": {
-    "includePaths": [
-        "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
-    ]
-},
-"assets": [
-    "src/favicon.ico",
-    "src/assets",
-    {
-        "glob": "**/*",
-        "input": "./node_modules/@guillotinaweb/pastanaga-angular/lib/assets",
-        "output": "assets"
-    }
-],
-```
+The Angular app is now offering all the Grange standard views (login, content creation, view, etc.).
 
 ## Reference
 
@@ -320,45 +296,10 @@ Then create the `mrs.developer.json`:
 }
 ```
 
-Install the NPM dependencies:
-
-```
-npm install @guillotinaweb/pastanaga-angular @ngrx/core @ngrx/core@8.6.0 @ngrx/effects@8.6.0 angular-svg-icon angular-traversal jexl ngx-schema-form z-schema @angular/cdk date-fns
-```
-
-Add the `pastanaga-overrides.scss` file in `/src` (it might be empty but should exist).
-
-Declare the Pastanaga style folder to Angular SCSS compiler in `angular.json`:
-
-```json
-"stylePreprocessorOptions": {
-    "includePaths": [
-        "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
-    ]
-},
-...
-"assets": [
-    ...
-    {
-        "glob": "**/*",
-        "input": "./node_modules/@guillotinaweb/pastanaga-angular/assets",
-        "output": "assets"
-    },
-]
-```
-
-Make the proper imports in `src/styles.scss`:
-
-```scss
-@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/common-reset";
-$font-path: "../node_modules/@guillotinaweb/pastanaga-angular/lib/assets/fonts";
-@import "../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/fonts";
-```
-
 ## Running Guillotina locally
 
 ```
-docker-compose -f g-api/docker-compose.yaml up
+npm run guillotina
 ```
 
 It comes with few content types example, they can be easily adapted and extended by editing `g-api/config.yaml`.
