@@ -40,7 +40,12 @@ The good thing about a Grange app is it is totally neutral about the Guillotina 
 
 ## Building a basic Grange app
 
-Install Grange in our Angular project:
+If you don't have one already, create an angular project:
+```
+ng new my-project
+```
+
+In your Angular project, install Grange:
 
 ```
 npm install @guillotinaweb/grange-schematic
@@ -50,14 +55,6 @@ ng add @guillotinaweb/grange-schematic
 Run Guillotina (it requires Docker):
 ```
 npm run guillotina
-```
-
-Create a Guillotina container for our project:
-```
-curl -XPOST --user root:root http://127.0.0.1:8081/db -d '{
-  "@type": "Container",
-  "id": "site"
-}'
 ```
 
 Import in the `app.module.ts` the Grange module plus a minimal NgRx store, and provide the Guillotina backend URL to our container:
@@ -78,7 +75,7 @@ import { StoreModule } from '@ngrx/store';
         {
             provide: 'CONFIGURATION',
             useValue: {
-                BACKEND_URL: 'http://127.0.0.1:8080/db/site',
+                BACKEND_URL: 'http://127.0.0.1:8081/db/site',
                 CLIENT_TIMEOUT: 5000,
             },
         },
@@ -101,6 +98,11 @@ Set the `traverser-outlet` in `app.component.html`:
 
 ```html
 <traverser-outlet></traverser-outlet>
+```
+
+Run the application:
+```
+npm start
 ```
 
 The Angular app is now offering all the Grange standard views (login, content creation, view, etc.).
