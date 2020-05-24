@@ -1,0 +1,7 @@
+<grange-actions></grange-actions>
+<div *ngFor="let row of (canvas | async); let x = index"
+     class="row">
+    <div *ngFor="let cell of row; let y = index"
+         [class.fill]="cell"
+         (click)="toggle(x, y, cell)"></div>
+</div>

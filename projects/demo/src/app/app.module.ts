@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
+import { CanvasComponent } from './canvas/canvas.component';
 import { GrangeRootModule } from '../../../grange/src';
 import { TraversalModule } from 'angular-traversal';
 import { StoreModule } from '@ngrx/store';
@@ -12,7 +13,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        CanvasComponent,
     ],
     imports: [
         BrowserModule,

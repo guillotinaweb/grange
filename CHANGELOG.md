@@ -1,3 +1,8 @@
+# 1.3.0 (2020-05-24)
+
+### Feature
+- Allow to get or update context transparently, keeping state and backend in sync
+
 # 1.2.1 (2020-05-03)
 
 ### Improvement
