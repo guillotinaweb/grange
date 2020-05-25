@@ -10,6 +10,9 @@ databases:
       pool_size: 100
 store_json: true
 allow_register: true
+jwk:
+  k: hGplrewNAVxULSApZavdXuxdiR_2Ner73oc-2Z7TVVY
+  kty: oct
 cache:
   driver: guillotina.contrib.redis
   updates_channel: guillotina
@@ -99,6 +102,15 @@ behaviors:
         title: Text
         default: Hello
 contents:
+  canvas:
+    title: Canvas
+    inherited_interface: guillotina.interfaces.IItem
+    inherited_class: guillotina.content.Item
+    add_permission: guillotina.AddContent
+    properties:
+      points:
+        type: guillotina.schema.JSONField
+        title: Points
   mydoc:
     title: My Doc
     inherited_interface: guillotina.interfaces.IFolder

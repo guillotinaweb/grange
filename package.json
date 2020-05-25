@@ -8,6 +8,7 @@
     "test": "jest",
     "lint": "ng lint",
     "test:watch": "jest --watch",
+    "guillotina": "docker-compose -f g-api/docker-compose.yaml up",
     "get_version": "cat ./projects/grange/package.json | grep version  | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'"
   },
   "private": true,

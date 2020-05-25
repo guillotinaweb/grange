@@ -78,6 +78,7 @@
               }
             ],
             "styles": [
+              "projects/demo/src/pastanaga.scss",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []

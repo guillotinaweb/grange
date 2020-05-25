@@ -175,6 +175,16 @@ import { Grange } from 'grange';
     constructor(private grange: Grange) {}
 ```
 
+### The Grange service itself
+
+The `grange` service provides handy methods for the most common needs.
+
+`getContext()`: returns an Observable with the current traversed context.
+
+`updateContext(changes)`: update the current context with the provided changes.
+The update will be performed in the state immediately, and the corresponding PATCH will be done on the backend.
+If the backend call fails, a GET call is done to update the state with the actual value.
+
 #### The Traverser service
 
 `this.grange.traverser`
@@ -246,6 +256,43 @@ Grange uses ngx-schema-form to render any JSON Schema as a dynamic form. The for
 ### Pastanaga UI library
 
 TO BE COMPLETED
+
+## Guillotina
+
+Useful Guillotina operations:
+
+- create an app container for a new project
+```
+curl -XPOST --user root:root http://127.0.0.1:8081/db -d '{
+  "@type": "Container",
+  "id": "my-app"
+}'
+```
+- create a user
+```
+curl -XPOST --user root:root http://127.0.0.1:8081/db/site/users -d '{
+    "@type": "User",
+    "id": "inewton",
+    "username": "inewton",
+    "name": "Isaac Newton",
+    "email": "isaac@newton.org",
+    "password": "inewton",
+    "user_roles": ["guillotina.Member"]
+}'
+```
+- give reader access to a user
+```
+curl -XPOST --user root:root http://127.0.0.1:8081/db/site/@sharing -d '{
+    "prinrole": [
+        {
+            "principal": "inewton",
+            "role": "guillotina.Reader",
+            "setting": "Allow"
+        }
+    ]
+}'
+```
+
 
 ## Developers
 
