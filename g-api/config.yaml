@@ -102,6 +102,18 @@ behaviors:
         title: Text
         default: Hello
 contents:
+  player:
+    title: Player
+    inherited_interface: guillotina.interfaces.IItem
+    inherited_class: guillotina.content.Item
+    add_permission: guillotina.AddContent
+    properties:
+      team:
+        type: guillotina.schema.TextLine
+        title: Team
+      rank:
+        type: guillotina.schema.Int
+        title: Rank
   canvas:
     title: Canvas
     inherited_interface: guillotina.interfaces.IItem

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Grange } from '../../../../grange/src';
-import { select } from '@ngrx/store';
-import { TraverserSelectors } from '@guillotinaweb/ngx-state-traverser';
-import { map, tap, concatMap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({

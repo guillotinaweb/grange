@@ -40,6 +40,8 @@ The good thing about a Grange app is it is totally neutral about the Guillotina 
 
 ## Building a basic Grange app
 
+### Init a Grange project
+
 If you don't have one already, create an angular project:
 ```
 ng new my-project
@@ -107,6 +109,92 @@ npm start
 
 The Angular app is now offering all the Grange standard views (login, content creation, view, etc.).
 
+### Create custom views
+
+We have in our Guillotina `config.yaml` file a custom content type named `player`:
+```yaml
+  player:
+    title: Player
+    inherited_interface: guillotina.interfaces.IItem
+    inherited_class: guillotina.content.Item
+    add_permission: guillotina.AddContent
+    properties:
+      team:
+        type: guillotina.schema.TextLine
+        title: Team
+      rank:
+        type: guillotina.schema.Int
+        title: Rank
+```
+
+We would like to use our own custom form to edit `player` contents.
+
+We create regular Angular component named `PlayerComponent` and we declare it in our `AppComponent` to become the `player` edit view:
+
+```typescript
+this.grange.traverser.addView('edit', 'player', PlayerComponent);
+```
+
+The template is a simple form (based on Pastanaga UI elements, but any form elements would work):
+
+```html
+<pa-input [(value)]="title">Title</pa-input>
+<pa-input [(value)]="team">Team</pa-input>
+<pa-input [(value)]="rank" type="number">Rank</pa-input>
+<pa-button (click)="save()">Save</pa-button>
+```
+
+In the component itself, we inject `grange` service:
+```typescript
+constructor(private grange: Grange) { }
+```
+
+Thank to this service, we can get the values we need from the context:
+```typescript
+ngOnInit() {
+    this.grange.getContext().subscribe(context => {
+        this.title = context.title;
+        this.team = context.team;
+        this.rank = context.rank;
+    });
+}
+```
+
+The good thing about `getContext()` is it returns an Observable that will emit the context object everytime it changes in our state, so our form is always reflecting the current state values.
+
+`grange` service also allows us to save the changes the user enters in the form:
+```typescript
+save() {
+    this.grange.updateContext({
+        title: this.title,
+        team: this.team,
+        rank: this.rank,
+    });
+}
+```
+`updateContext()` updates the state (hence the form is immediately updated because `getContext()` will emit the new values), and it also updates Guillotina backend by doing a PATCH call.
+
+If we want to take an action after saving – like redirecting to the home page – `updateContext()` has a `onComplete` property which is a boolean observable (returning `true` for success, and `false` if saving produced a backend error):
+
+```typescript
+save() {
+    this.grange.updateContext({
+        title: this.title,
+        team: this.team,
+        rank: this.rank,
+    }).onComplete.subscribe(success => {
+        if (success) {
+            this.grange.ui.toaster.open('Saved', 2000);
+            this.grange.traverser.traverse('/');
+        } else {
+            this.grange.ui.toaster.open('Error when saving.', 'common.dismiss');
+        }
+    });
+}
+```
+
+See [the full code example](projects/demo/src/app).
+
 ## Reference
 
 ### Grange views
@@ -160,7 +248,7 @@ import { Grange } from 'grange';
     constructor(private grange: Grange) {}
 
     notify() {
-        this.grange.ui.toaster.open('Hello');
+        this.grange.ui.toaster.open('Hello', 'Close');
     }
 ```
 
@@ -233,7 +321,7 @@ It allows to select state information or to dispatch actions. See below the "Sta
 
 `this.grange.ui`
 
-It gives access to the main Pastanaga services: calendar, popup, sidebar, and translate.
+It gives access to the main Pastanaga services: calendar, dialog, popup, sidebar, toaster and translate.
 
 See "Pastanaga UI library" section below.
 

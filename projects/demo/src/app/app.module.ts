@@ -4,17 +4,19 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './canvas/canvas.component';
+import { PlayerComponent } from './player/player.component';
 import { GrangeRootModule } from '../../../grange/src';
 import { TraversalModule } from 'angular-traversal';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ButtonModule } from '@guillotinaweb/pastanaga-angular';
+import { ButtonModule, TextFieldModule } from '@guillotinaweb/pastanaga-angular';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
         AppComponent,
         CanvasComponent,
+        PlayerComponent,
     ],
     imports: [
         BrowserModule,
@@ -26,6 +28,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
             maxAge: 25
         }),
         AngularSvgIconModule.forRoot(),
+        ButtonModule,
+        TextFieldModule,
         ButtonModule,
     ],
     providers: [
