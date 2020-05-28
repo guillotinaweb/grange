@@ -30,7 +30,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         AngularSvgIconModule.forRoot(),
         ButtonModule,
         TextFieldModule,
-        ButtonModule,
     ],
     providers: [
         {
