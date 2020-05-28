@@ -1,3 +1,13 @@
+# 1.3.1 (2020-05-28)
+
+### Improvement
+- Improve the demo
+- More documentation
+- `updateContext` returns `onComplete` observable
+
+### Bug fix:
+- Fix `updateContext` method
+
 # 1.3.0 (2020-05-24)
 
 ### Feature
