@@ -2,14 +2,14 @@
     <h2 class="pa-sr" id="breadcrumbs-youarehere" translate>breadcrumbs.here</h2>
     <ol class="breadcrumb" aria-labeledby="breadcrumbs-youarehere">
         <li>
-            <pa-button-link traverseTo="/" icon="home" [hasButtonDisplay]="true" paTooltip="workingbar.home" paTooltipType="action">
-            </pa-button-link>
+            <pa-button traverseTo="/" icon="home" paTooltip="workingbar.home" paTooltipType="action">
+            </pa-button>
         </li>
         <ng-container *ngFor="let ancestor of (ancestors | async)">
             <li class="breadcrumb-item">
-                <pa-button-link [traverseTo]="ancestor['@id']">
+                <a href="#" [traverseTo]="ancestor['@id']" class="pa-button pa-button-link">
                     {{ ancestor.title }}
-                </pa-button-link>
+                </a>
             </li>
         </ng-container>
     </ol>
