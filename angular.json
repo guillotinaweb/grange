@@ -153,24 +153,131 @@
           "options": {
             "tsConfig": [
               "projects/demo/tsconfig.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
+              "projects/demo/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        }
+      }
+    },
+    "simple-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/simple-demo",
+      "sourceRoot": "projects/simple-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "protractorConfig": "projects/demo/e2e/protractor.conf.js",
-            "devServerTarget": "demo:serve"
+            "outputPath": "dist/simple-demo",
+            "index": "projects/simple-demo/src/index.html",
+            "main": "projects/simple-demo/src/main.ts",
+            "polyfills": "projects/simple-demo/src/polyfills.ts",
+            "tsConfig": "projects/simple-demo/tsconfig.app.json",
+            "aot": false,
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "./node_modules/@guillotinaweb/pastanaga-angular/lib/styles"
+                ]
+            },
+            "assets": [
+              "projects/simple-demo/src/favicon.ico",
+              "projects/simple-demo/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@guillotinaweb/pastanaga-angular/lib/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": [
+              "projects/demo/src/pastanaga.scss",
+              "projects/simple-demo/src/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo:serve:production"
+              "fileReplacements": [
+                {
+                  "replace": "projects/simple-demo/src/environments/environment.ts",
+                  "with": "projects/simple-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "simple-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "simple-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "simple-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/simple-demo/src/test.ts",
+            "polyfills": "projects/simple-demo/src/polyfills.ts",
+            "tsConfig": "projects/simple-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/simple-demo/karma.conf.js",
+            "assets": [
+              "projects/simple-demo/src/favicon.ico",
+              "projects/simple-demo/src/assets"
+            ],
+            "styles": [
+              "projects/simple-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/simple-demo/tsconfig.app.json",
+              "projects/simple-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

@@ -1,36 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { Grange } from '../../../../grange/src';
+import { BaseView } from '../../../../grange/src';
+import { Resource } from '@guillotinaweb/grange-core';
+import { map } from 'rxjs/operators';
+import { MovePlayerComponent } from './move-player.dialog';
+
+interface Player extends Resource {
+    rank: number;
+}
 
 @Component({
     selector: 'app-player',
     templateUrl: 'player.component.html'
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent extends BaseView implements OnInit {
     title = '';
-    team = '';
     rank = 0;
-
-    constructor(private grange: Grange) { }
+    player = this.context.pipe(map(res => res as Player));
 
     ngOnInit() {
-        this.grange.getContext().subscribe(context => {
-            this.title = context.title;
-            this.team = context.team;
-            this.rank = context.rank;
+        this.player.subscribe(player => {
+            this.title = player.title;
+            this.rank = player.rank;
         });
     }
 
     save() {
         this.grange.updateContext({
             title: this.title,
-            team: this.team,
             rank: this.rank,
         }).onComplete.subscribe(success => {
             if (success) {
-                this.grange.ui.toaster.open('Saved', 2000);
-                this.grange.traverser.traverse('/');
+                this.grange.ui.toaster.open('Updated', 2000);
+                this.grange.traverser.traverse('..');
             } else {
                 this.grange.ui.toaster.open('Error when saving.', 'common.dismiss');
+            }
+        });
+    }
+
+    delete() {
+        this.grange.deleteContext().onComplete.subscribe(success => {
+            if (success) {
+                this.grange.traverser.traverse('..');
+            }
+        });
+    }
+
+    openDialog() {
+        this.grange.ui.dialog.openDialog(MovePlayerComponent).onClose.subscribe(teamPath => {
+            if (!!teamPath) {
+                this.grange.traverser.traverse(teamPath);
             }
         });
     }

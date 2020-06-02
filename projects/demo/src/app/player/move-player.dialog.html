@@ -1,0 +1,10 @@
+<pa-dialog>
+    <pa-dialog-title>Move <strong>{{ (player | async).title }}</strong></pa-dialog-title>
+    <pa-checkbox-group type="radio"
+                       [checkboxes]="teams | async"
+                       (selection)="newTeam = $event[0]">Choose a new team for this player</pa-checkbox-group>
+    <pa-dialog-footer>
+        <pa-button border
+                   (click)="move()">Move</pa-button>
+    </pa-dialog-footer>
+</pa-dialog>
