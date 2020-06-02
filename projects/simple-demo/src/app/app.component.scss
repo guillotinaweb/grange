@@ -1,0 +1,16 @@
+@import "../../../../node_modules/@guillotinaweb/pastanaga-angular/lib/styles/variables";
+
+:host {
+    display: block;
+
+    header pa-button {
+        float: right;
+    }
+
+    grange-breadcrumbs {
+        background-color: $azure-light;
+    }
+    main {
+        padding: rythm(2);
+    }
+}

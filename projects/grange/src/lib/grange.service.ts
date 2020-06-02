@@ -5,7 +5,7 @@ import { GrangeCore } from '@guillotinaweb/grange-core';
 import { GrangeState } from './state/state';
 import { PastanagaService } from '@guillotinaweb/pastanaga-angular';
 import { Observable, AsyncSubject } from 'rxjs';
-import { TraverserSelectors, TraverserActions } from '@guillotinaweb/ngx-state-traverser';
+import { TraverserSelectors, TraverserActions, deepMerge } from '@guillotinaweb/ngx-state-traverser';
 import { take, concatMap, tap, skip, map } from 'rxjs/operators';
 
 @Injectable({
@@ -43,7 +43,7 @@ export class Grange {
                 path = this.core.api.getPath(context['@id']);
                 this.store.dispatch(new TraverserActions.UpdateTraverserResource({path, changes}));
             }),
-            concatMap(newContext => this.core.resource.update(path, changes)),
+            concatMap(newContext => this.core.resource.update(path, deepMerge(initialContext, changes))),
         ).subscribe(
             () => {
                 onComplete.next(true);

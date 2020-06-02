@@ -1,0 +1,16 @@
+<h2>{{ (context | async).title }} contests</h2>
+<table>
+    <tr><th>Year</th><th>Victory or defeat</th></tr>
+    <tr *ngFor="let contest of (contests | async)">
+        <td>{{ contest[0] }}</td>
+        <td>
+            <pa-icon *ngIf="contest[1]" name="delighted"></pa-icon>
+            <pa-icon *ngIf="!contest[1]" name="dissatisfied"></pa-icon>
+        </td>
+    </tr>
+    <tr>
+        <td><pa-input [(value)]="year">Year</pa-input></td>
+        <td><pa-checkbox [(selected)]="victory">Victory</pa-checkbox></td>
+    </tr>
+    <tr><td><pa-button (click)="addContest()" icon="add" [disabled]="!year"></pa-button></td></tr>
+</table>

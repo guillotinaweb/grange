@@ -14,7 +14,7 @@ Complex applications are supported too as the Grange is highly extensible and al
 
 A Grange app is able to render any object served by the Guillotina backend.
 
-It will use the path requested on the frontend to call the corresponding Guillotina object, like `http://localhost:4200/shoes/pink-boots` will produce a call to `` https://my-guillotina-server/db/app1/shoes/pink-boots` (assuming our Guillotina container supporting our app is named `app1`).
+It will use the path requested on the frontend to call the corresponding Guillotina object, like `http://localhost:4200/shoes/pink-boots` will produce a call to `https://my-guillotina-server/db/app1/shoes/pink-boots` (assuming our Guillotina container supporting our app is named `app1`).
 
 Let's assume the `pink-boots` object belongs to the `Shoes` type (a custom type defined in `app1`), it will be rendered using the default view (named `view`).
 
@@ -107,93 +107,11 @@ Run the application:
 npm start
 ```
 
-The Angular app is now offering all the Grange standard views (login, content creation, view, etc.).
+Our Angular app is now offering all Grange standard views (login, content creation, view, etc.).
+We can login as root/root. By clicking on the "Plus" button, we get the available content types and we can a new content.
+Once created we can delete it or edit it. The edit form is automatically generated based on the content type schema provided by Guillotina.
 
-### Create custom views
-
-We have in our Guillotina `config.yaml` file a custom content type named `player`:
-```yaml
-  player:
-    title: Player
-    inherited_interface: guillotina.interfaces.IItem
-    inherited_class: guillotina.content.Item
-    add_permission: guillotina.AddContent
-    properties:
-      team:
-        type: guillotina.schema.TextLine
-        title: Team
-      rank:
-        type: guillotina.schema.Int
-        title: Rank
-```
-
-We would like to use our own custom form to edit `player` contents.
-
-We create regular Angular component named `PlayerComponent` and we declare it in our `AppComponent` to become the `player` edit view:
-
-```typescript
-this.grange.traverser.addView('edit', 'player', PlayerComponent);
-```
-
-The template is a simple form (based on Pastanaga UI elements, but any form elements would work):
-
-```html
-<pa-input [(value)]="title">Title</pa-input>
-<pa-input [(value)]="team">Team</pa-input>
-<pa-input [(value)]="rank" type="number">Rank</pa-input>
-<pa-button (click)="save()">Save</pa-button>
-```
-
-In the component itself, we inject `grange` service:
-```typescript
-constructor(private grange: Grange) { }
-```
-
-Thank to this service, we can get the values we need from the context:
-```typescript
-ngOnInit() {
-    this.grange.getContext().subscribe(context => {
-        this.title = context.title;
-        this.team = context.team;
-        this.rank = context.rank;
-    });
-}
-```
-
-The good thing about `getContext()` is it returns an Observable that will emit the context object everytime it changes in our state, so our form is always reflecting the current state values.
-
-`grange` service also allows us to save the changes the user enters in the form:
-```typescript
-save() {
-    this.grange.updateContext({
-        title: this.title,
-        team: this.team,
-        rank: this.rank,
-    });
-}
-```
-`updateContext()` updates the state (hence the form is immediately updated because `getContext()` will emit the new values), and it also updates Guillotina backend by doing a PATCH call.
-
-If we want to take an action after saving – like redirecting to the home page – `updateContext()` has a `onComplete` property which is a boolean observable (returning `true` for success, and `false` if saving produced a backend error):
-
-```typescript
-save() {
-    this.grange.updateContext({
-        title: this.title,
-        team: this.team,
-        rank: this.rank,
-    }).onComplete.subscribe(success => {
-        if (success) {
-            this.grange.ui.toaster.open('Saved', 2000);
-            this.grange.traverser.traverse('/');
-        } else {
-            this.grange.ui.toaster.open('Error when saving.', 'common.dismiss');
-        }
-    });
-}
-```
-
-See [the full code example](projects/demo/src/app).
+See [Grange tutorial](./docs/TUTORIAL.md) for more advanced examples.
 
 ## Reference
 
