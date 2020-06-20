@@ -350,7 +350,7 @@ export class TeamComponent extends FolderView {
 
 Note we do not need the equivalent of `loadTeams` method here, as we just use the `refreshChildren` provided by `FolderView`.
 
-To make it look better, let's use Pastanaga expand panels (note: we must import `ExpandModule` in `app.module.ts`):
+To make it look better, let's use Pastanaga expand panels (note: we must import `ExpandModule` plus Angular's `BrowserAnimationsModule` in `app.module.ts`):
 
 ```html
 <h2>{{ (context | async).title }}</h2>
@@ -373,7 +373,7 @@ Note badges are now links to traverse to players "edit" view:
 [traverseTo]="player['@id'] + '/@@edit'"
 ```
 
-Let's implement a component for that.
+But if we click, we get the default Pastanaga Edit view, and we want our own form here. Let's implement a component for that.
 
 ### Player
 
@@ -392,7 +392,7 @@ This component is a form allowing to enter player's name and rank or to delete t
 <pa-button (click)="delete()" color="destructive">Delete</pa-button>
 ```
 
-Let's make it extend `BaseView` so we can access the view context easily. The context is always typed as `any`.
+Let's make it extend `ViewView` so we can access the view context easily. The context is always typed as `any`.
 As we know the context is a player object, it would be nice to map it to a custom `Player` interface:
 
 ```ts
@@ -404,7 +404,7 @@ interface Player extends Resource {
     selector: 'app-player',
     templateUrl: 'player.component.html'
 })
-export class PlayerComponent extends BaseView implements OnInit {
+export class PlayerComponent extends ViewView implements OnInit {
     title = '';
     rank = 0;
     player = this.context.pipe(map(res => res as Player));
@@ -441,7 +441,6 @@ If we want to take an action after saving – like redirecting to the home page 
 save() {
     this.grange.updateContext({
         title: this.title,
-        team: this.team,
         rank: this.rank,
     }).onComplete.subscribe(success => {
         if (success) {
@@ -508,7 +507,14 @@ It is not a view, so we will have to inject the Grange service ourselves:
 constructor(private grange: Grange) { }
 ```
 
-To create th elist of radio buttons, we get all the items from our Guillotina root container that are Teams and we map them to `ControlModel`:
+We get the current player fromn the context (and add a `newTeam` attribute to store the user's selection):
+
+```ts
+player = this.grange.getContext();
+newTeam = '';
+```
+
+To create the list of radio buttons, we get all the items from our Guillotina root container that are Teams and we map them to `ControlModel`:
 
 ```ts
 teams: Observable<ControlModel[]> = this.grange.core.resource.items('/').pipe(
@@ -605,10 +611,10 @@ This view displays all team contests in a table, and the last table row allows t
 
 Note: to use `pa-icon`, we have to import `SvgModule` in `app.module.ts`.
 
-`TeamContestsComponent` extends `BaseView` so we can use the context, and we get the `contests` value (which is a dictionnary) and turn it into a list.
+`TeamContestsComponent` extends `ViewView` so we can use the context, and we get the `contests` value (which is a dictionnary) and turn it into a list.
 
 ```ts
-export class TeamContestsComponent extends BaseView {
+export class TeamContestsComponent extends ViewView {
     year = '';
     victory = false;
 

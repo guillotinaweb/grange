@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { BaseView } from '../../../../grange/src';
+import { ViewView } from '../../../../grange/src';
 import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-team-contests',
     templateUrl: 'team-contests.component.html',
 })
-export class TeamContestsComponent extends BaseView {
+export class TeamContestsComponent extends ViewView {
     year = '';
     victory = false;
 
