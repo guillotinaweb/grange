@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseView } from '../../../../grange/src';
+import { ViewView } from '../../../../grange/src';
 import { Resource } from '@guillotinaweb/grange-core';
 import { map } from 'rxjs/operators';
 import { MovePlayerComponent } from './move-player.dialog';
@@ -12,7 +12,7 @@ interface Player extends Resource {
     selector: 'app-player',
     templateUrl: 'player.component.html'
 })
-export class PlayerComponent extends BaseView implements OnInit {
+export class PlayerComponent extends ViewView implements OnInit {
     title = '';
     rank = 0;
     player = this.context.pipe(map(res => res as Player));

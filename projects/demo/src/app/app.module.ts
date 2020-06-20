@@ -59,6 +59,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
                 BACKEND_URL: environment.backend,
                 CLIENT_TIMEOUT: 5000,
                 LOGO: 'assets/logo.svg',
+                SOCIAL_LOGIN: false,
             },
         },
     ],
