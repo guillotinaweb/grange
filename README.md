@@ -111,7 +111,7 @@ Our Angular app is now offering all Grange standard views (login, content creati
 We can login as root/root. By clicking on the "Plus" button, we get the available content types and we can a new content.
 Once created we can delete it or edit it. The edit form is automatically generated based on the content type schema provided by Guillotina.
 
-See [Grange tutorial](./docs/TUTORIAL.md) for more advanced examples.
+See [Grange tutorial](https://github.com/guillotinaweb/grange/blob/master/docs/TUTORAL.md) for more advanced examples.
 
 ## Reference
 
