@@ -1,3 +1,10 @@
+# 1.3.2 (2020-06-20)
+
+### Improvement
+- Better demo and turorial
+- More utilities (getContextAs, addInContext, and deleteContext)
+- add refreshChildren method in folder view
+
 # 1.3.1 (2020-05-28)
 
 ### Improvement

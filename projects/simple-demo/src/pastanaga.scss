@@ -1,0 +1,7 @@
+@import "~@guillotinaweb/pastanaga-angular/lib/styles/common-reset";
+$font-path: "~@guillotinaweb/pastanaga-angular/lib/assets/fonts";
+@import "~@guillotinaweb/pastanaga-angular/lib/styles/fonts";
+
+html, body {
+    overflow: auto;
+}

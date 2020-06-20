@@ -1,0 +1,9 @@
+<h1>Ping-pong team manager</h1>
+<ul>
+    <li *ngFor="let team of teams">
+        <a href="#" [traverseTo]="team['@id']">{{ team.title }}</a>
+        <pa-button size="small" icon="delete" (click)="delete(team['@id'])">Delete</pa-button>
+    </li>
+</ul>
+<pa-input [(value)]="newTeam">Team name</pa-input>
+<pa-button (click)="addTeam()" border [disabled]="!newTeam">Add new team</pa-button>
