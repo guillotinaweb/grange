@@ -43,6 +43,7 @@ The good thing about a Grange app is it is totally neutral about the Guillotina 
 ### Init a Grange project
 
 If you don't have one already, create an angular project:
+
 ```
 ng new my-project
 ```
@@ -55,6 +56,7 @@ ng add @guillotinaweb/grange-schematic
 ```
 
 Run Guillotina (it requires Docker):
+
 ```
 npm run guillotina
 ```
@@ -70,7 +72,15 @@ import { StoreModule } from '@ngrx/store';
     imports: [
         ...
         GrangeRootModule.forRoot(),
-        StoreModule.forRoot({}),
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false,
+                },
+            }
+        ),
         TraversalModule,
     ],
     providers: [
@@ -88,9 +98,7 @@ Initialize the default views in `app.component.ts`:
 
 ```typescript
 export class AppComponent {
-    constructor(
-        private views: GrangeViews,
-    ) {
+    constructor(private views: GrangeViews) {
         this.views.initialize();
     }
 }
@@ -103,6 +111,7 @@ Set the `traverser-outlet` in `app.component.html`:
 ```
 
 Run the application:
+
 ```
 npm start
 ```
@@ -225,9 +234,9 @@ More details in the [Angular traversal documentation](https://github.com/guillot
 
 The core service provides access to:
 
-- the authentication service, to login, logout, get the current username;
-- the resource service to interact with the Guillotina resources (get, create, modify, delete, find, share, get children, get navigation links, breadcrumbs, etc.);
-- the API service to handle all the low-level communications with the Guillotina backend: regular HTTP verbs or file downloading.
+-   the authentication service, to login, logout, get the current username;
+-   the resource service to interact with the Guillotina resources (get, create, modify, delete, find, share, get children, get navigation links, breadcrumbs, etc.);
+-   the API service to handle all the low-level communications with the Guillotina backend: regular HTTP verbs or file downloading.
 
 #### Redux store
 
@@ -267,14 +276,17 @@ TO BE COMPLETED
 
 Useful Guillotina operations:
 
-- create an app container for a new project
+-   create an app container for a new project
+
 ```
 curl -XPOST --user root:root http://127.0.0.1:8081/db -d '{
   "@type": "Container",
   "id": "my-app"
 }'
 ```
-- create a user
+
+-   create a user
+
 ```
 curl -XPOST --user root:root http://127.0.0.1:8081/db/site/users -d '{
     "@type": "User",
@@ -286,7 +298,9 @@ curl -XPOST --user root:root http://127.0.0.1:8081/db/site/users -d '{
     "user_roles": ["guillotina.Member"]
 }'
 ```
-- give reader access to a user
+
+-   give reader access to a user
+
 ```
 curl -XPOST --user root:root http://127.0.0.1:8081/db/site/@sharing -d '{
     "prinrole": [
@@ -298,7 +312,6 @@ curl -XPOST --user root:root http://127.0.0.1:8081/db/site/@sharing -d '{
     ]
 }'
 ```
-
 
 ## Developers
 

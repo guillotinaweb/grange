@@ -1,38 +1,38 @@
 {
-  "name": "@guillotinaweb/grange",
-  "version": "1.3.2",
-  "license": "MIT",
-  "author": {
-    "name": "Eric Brehault",
-    "email": "ebrehault@gmail.com"
-  },
-  "description": "The Guillotina REST API aNGular Environment",
-  "keywords": [
-    "angular",
-    "guillotinaweb"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/guillotinaweb/grange"
-  },
-  "bugs": {
-    "url": "https://github.com/guillotinaweb/grange/issues"
-  },
-  "peerDependencies": {
-    "@angular/common": "^9.0.4",
-    "@angular/cdk": "~9.0.1",
-    "@angular/core": "^9.0.4",
-    "@guillotinaweb/grange-core": "latest",
-    "@guillotinaweb/grange-form": "latest",
-    "@guillotinaweb/ngx-state-traverser": "latest",
-    "@guillotinaweb/pastanaga-angular": "latest",
-    "angular-svg-icon": "^8.0.0",
-    "angular-traversal": "latest",
-    "date-fns": "^2.9.0",
-    "ngx-schema-form": "latest"
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@guillotinaweb/grange",
+    "version": "1.3.2",
+    "license": "MIT",
+    "author": {
+        "name": "Eric Brehault",
+        "email": "ebrehault@gmail.com"
+    },
+    "description": "The Guillotina REST API aNGular Environment",
+    "keywords": [
+        "angular",
+        "guillotinaweb"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/guillotinaweb/grange"
+    },
+    "bugs": {
+        "url": "https://github.com/guillotinaweb/grange/issues"
+    },
+    "peerDependencies": {
+        "@angular/common": "^10.0.5",
+        "@angular/cdk": "~10.1.0",
+        "@angular/core": "^10.0.5",
+        "@guillotinaweb/grange-core": "latest",
+        "@guillotinaweb/grange-form": "latest",
+        "@guillotinaweb/ngx-state-traverser": "latest",
+        "@guillotinaweb/pastanaga-angular": "^1.18.11",
+        "angular-svg-icon": "^9.2.0",
+        "angular-traversal": "latest",
+        "date-fns": "^2.9.0",
+        "ngx-schema-form": "latest"
+    },
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -3,6 +3,7 @@
 ## Get started
 
 Create an angular project:
+
 ```bash
 ng new my-project
 ```
@@ -15,6 +16,7 @@ ng add @guillotinaweb/grange-schematic
 ```
 
 Run Guillotina (it requires Docker):
+
 ```bash
 npm run guillotina
 ```
@@ -30,7 +32,15 @@ import { StoreModule } from '@ngrx/store';
     imports: [
         ...
         GrangeRootModule.forRoot(),
-        StoreModule.forRoot({}),
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false,
+                },
+            }
+        ),
         TraversalModule,
     ],
     providers: [
@@ -48,9 +58,7 @@ Initialize the default views in `app.component.ts`:
 
 ```ts
 export class AppComponent {
-    constructor(
-        private views: GrangeViews,
-    ) {
+    constructor(private views: GrangeViews) {
         this.views.initialize();
     }
 }
@@ -63,6 +71,7 @@ Set the `traverser-outlet` in `app.component.html`:
 ```
 
 Run the application:
+
 ```bash
 npm start
 ```
@@ -90,7 +99,7 @@ Let's tweak a bit our app component.
 `app.component.scss`:
 
 ```scss
-@import "~@guillotinaweb/pastanaga-angular/lib/styles/variables";
+@import '~@guillotinaweb/pastanaga-angular/lib/styles/variables';
 
 :host {
     display: block;
@@ -117,17 +126,14 @@ import { GrangeViews, Grange } from '@guillotinaweb/grange';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     isAuthenticated = false;
 
-    constructor(
-        private grange: Grange,
-        private views: GrangeViews,
-    ) {
+    constructor(private grange: Grange, private views: GrangeViews) {
         this.views.initialize();
-        this.grange.core.auth.isAuthenticated.subscribe(auth => this.isAuthenticated = auth.state);
+        this.grange.core.auth.isAuthenticated.subscribe((auth) => (this.isAuthenticated = auth.state));
     }
 
     logout() {
@@ -149,28 +155,29 @@ See [the full code example](projects/simple-demo/src/app).
 We want an app to create an app to manage ping-pong teams.
 
 Let's add in our Guillotina `config.yaml` file two custom content types named `player` and `team`:
+
 ```yaml
 contents:
-  player:
-    title: Player
-    inherited_interface: guillotina.interfaces.IItem
-    inherited_class: guillotina.content.Item
-    add_permission: guillotina.AddContent
-    properties:
-      rank:
-        type: guillotina.schema.Int
-        title: Rank
-  team:
-    title: Team
-    inherited_interface: guillotina.interfaces.IFolder
-    inherited_class: guillotina.content.Folder
-    add_permission: guillotina.AddContent
-    allowed_types:
-      - player
-    properties:
-      contests:
-        type: guillotina.schema.JSONField
-        title: Contests
+    player:
+        title: Player
+        inherited_interface: guillotina.interfaces.IItem
+        inherited_class: guillotina.content.Item
+        add_permission: guillotina.AddContent
+        properties:
+            rank:
+                type: guillotina.schema.Int
+                title: Rank
+    team:
+        title: Team
+        inherited_interface: guillotina.interfaces.IFolder
+        inherited_class: guillotina.content.Folder
+        add_permission: guillotina.AddContent
+        allowed_types:
+            - player
+        properties:
+            contests:
+                type: guillotina.schema.JSONField
+                title: Contests
 ```
 
 Player inherits from Guillotina `Item`, hence it will have an `@id` and a `title`, we just add an extra attribute named `rank` that will allow to store the player rank as an integer.
@@ -179,6 +186,7 @@ Team inherits from Guillotina `Folder`, so it can contain other contents. The `a
 We add a custom attribute named `contests` that will allow to store victories and defeats as a dictionary.
 
 And let's create an app container for this new project:
+
 ```bash
 curl -XPOST --user root:root http://127.0.0.1:8081/db -d '{
   "@type": "Container",
@@ -207,17 +215,20 @@ this.grange.traverser.addView('view', 'Container', TeamListComponent);
 That way, the Grange default container view is replaced by our own component
 
 In the component itself, we inject `grange` service:
+
 ```ts
 constructor(private grange: Grange) { }
 ```
 
 To be able to create a new team, we add the following in the component template:
+
 ```html
 <pa-input [(value)]="newTeam">Team name</pa-input>
 <pa-button (click)="addTeam()" border [disabled]="!newTeam">Add new team</pa-button>
 ```
 
 We use the Pastanaga buttons and inputs here, so we will have to import the needed Pastanaga modules in `app.module.ts`:
+
 ```ts
 imports: [
     ...our other modules...,
@@ -227,11 +238,13 @@ imports: [
 ```
 
 In the component, we add a `newTeam` property:
+
 ```ts
 newTeam = '';
 ```
 
 And we add an `addTeam` method:
+
 ```ts
 addTeam() {
     this.grange.addInContext({'@type': 'team', title: this.newTeam, contests: {}});
@@ -241,6 +254,7 @@ addTeam() {
 Note: `addInContext` is a shortcut that gets the current context path and then calls the `grange.core.resource.create()` method. If the data we pass does not contain an `id`, an `id` will be generated by sanitizing the `title`.
 
 Our existing teams will be managed in a property named `teams`, and we will update it by subscribing to an observable:
+
 ```ts
 teams: Resource[];
 
@@ -256,9 +270,11 @@ loadTeams(): Observable<Resource[]> {
     );
 }
 ```
+
 The `items('/')` method from `resource` service allows to collect all the Guillotina contents in the container root, to make sure we only get teams, we filter the results according their `@type` value.
 
 Now we can display the team list in our template:
+
 ```html
 <ul>
     <li *ngFor="let team of (teams | async)">
@@ -271,6 +287,7 @@ Important note:
 Guillotina resources expose their full URL in `@id` attribute. Even though it is a backend URL (like `http://127.0.0.1:8081/db/ping-pong/teamA`), and not a front app path (like `http:/localhost:4200/teamA`), angular-traversal allows us to use it as a valid path to traverse. It will make the corresponding backend call and navigate to the equivalent front app path (`/teamA`) transparently. It is particularly handy to be able to use any backend URL as valid "links" in the app without having to convert them everytime.
 
 We must fix the `addTeam` property in order to refresh the display after adding a new team:
+
 ```ts
 addTeam() {
     this.grange.addInContext({'@type': 'team', title: this.newTeam, contests: {}}).onComplete.pipe(
@@ -283,6 +300,7 @@ addTeam() {
 ```
 
 We also want to be able to delete a team:
+
 ```ts
 delete(path: string) {
     this.grange.core.resource.delete(path).pipe(
@@ -292,6 +310,7 @@ delete(path: string) {
 ```
 
 The `delete()` method is called from a button next to each team link:
+
 ```html
 <li *ngFor="let team of teams">
     <a href="#" [traverseTo]="team['@id']">{{ team.title }}</a>
@@ -335,15 +354,17 @@ export class TeamComponent extends FolderView {
     newPlayer = '';
 
     addPlayer() {
-        this.grange.addInContext({
-            '@type': 'player',
-            title: this.newPlayer
-        }).onComplete.subscribe(success => {
-            if (success) {
-                this.refreshChildren();
-                this.newPlayer = '';
-            }
-        });
+        this.grange
+            .addInContext({
+                '@type': 'player',
+                title: this.newPlayer,
+            })
+            .onComplete.subscribe((success) => {
+                if (success) {
+                    this.refreshChildren();
+                    this.newPlayer = '';
+                }
+            });
     }
 }
 ```
@@ -356,7 +377,9 @@ To make it look better, let's use Pastanaga expand panels (note: we must import 
 <h2>{{ (context | async).title }}</h2>
 <pa-expand [openOnInit]="true">
     <expand-title>Players</expand-title>
-    <pa-badge *ngFor="let player of (children | async)" [traverseTo]="player['@id'] + '/@@edit'">{{player.title}}</pa-badge>
+    <pa-badge *ngFor="let player of (children | async)" [traverseTo]="player['@id'] + '/@@edit'"
+        >{{player.title}}</pa-badge
+    >
 </pa-expand>
 <pa-expand>
     <expand-title>Add player</expand-title>
@@ -402,16 +425,17 @@ interface Player extends Resource {
 
 @Component({
     selector: 'app-player',
-    templateUrl: 'player.component.html'
+    templateUrl: 'player.component.html',
 })
 export class PlayerComponent extends ViewView implements OnInit {
     title = '';
     rank = 0;
-    player = this.context.pipe(map(res => res as Player));
+    player = this.context.pipe(map((res) => res as Player));
 }
 ```
 
 Now let's get the current title and rank values from the context:
+
 ```ts
 ngOnInit() {
     this.player.subscribe(context => {
@@ -433,6 +457,7 @@ save() {
     });
 }
 ```
+
 `updateContext()` updates the state (hence the form is immediately updated because `this.player` will emit the new values), and it also updates Guillotina backend by doing a PATCH call.
 
 If we want to take an action after saving – like redirecting to the home page – `updateContext()` has a `onComplete` property which is a boolean observable (returning `true` for success, and `false` if saving produced a backend error):
@@ -482,9 +507,9 @@ The dialog contains a radio button list to select the new team:
 ```html
 <pa-dialog>
     <pa-dialog-title>Move <strong>{{ (player | async).title }}</strong></pa-dialog-title>
-    <pa-checkbox-group type="radio"
-                       [checkboxes]="teams | async"
-                       (selection)="newTeam = $event[0]">Choose a new team for this player</pa-checkbox-group>
+    <pa-checkbox-group type="radio" [checkboxes]="teams | async" (selection)="newTeam = $event[0]"
+        >Choose a new team for this player</pa-checkbox-group
+    >
     <pa-dialog-footer>
         <pa-button border (click)="move()">Move</pa-button>
     </pa-dialog-footer>
@@ -562,7 +587,7 @@ openDialog() {
 Note in `MovePlayerComponent` we closed the dialog returning the new team path:
 
 ```ts
-this.dialog.close(this.newTeam)
+this.dialog.close(this.newTeam);
 ```
 
 And that's the value we get when subscribing here to `onClose`, allowing us to redirect to the corresponding team.
@@ -593,7 +618,10 @@ This view displays all team contests in a table, and the last table row allows t
 
 ```html
 <table>
-    <tr><th>Year</th><th>Victory or defeat</th></tr>
+    <tr>
+        <th>Year</th>
+        <th>Victory or defeat</th>
+    </tr>
     <tr *ngFor="let contest of (contests | async)">
         <td>{{ contest[0] }}</td>
         <td>
@@ -605,7 +633,9 @@ This view displays all team contests in a table, and the last table row allows t
         <td><pa-input [(value)]="year">Year</pa-input></td>
         <td><pa-checkbox [(selected)]="victory">Victory</pa-checkbox></td>
     </tr>
-    <tr><td><pa-button (click)="addContest()" icon="add" [disabled]="!year"></pa-button></td></tr>
+    <tr>
+        <td><pa-button (click)="addContest()" icon="add" [disabled]="!year"></pa-button></td>
+    </tr>
 </table>
 ```
 
@@ -618,12 +648,10 @@ export class TeamContestsComponent extends ViewView {
     year = '';
     victory = false;
 
-    contests = this.context.pipe(
-        map(context => Object.entries(context['contests'] || {}))
-    );
+    contests = this.context.pipe(map((context) => Object.entries(context['contests'] || {})));
 
     addContest() {
-        this.grange.updateContext({contests: {[this.year]: this.victory}});
+        this.grange.updateContext({ contests: { [this.year]: this.victory } });
         this.year = '';
         this.victory = false;
     }

@@ -9,17 +9,16 @@ import { TraverserSelectors, TraverserActions, deepMerge } from '@guillotinaweb/
 import { take, concatMap, tap, skip, map } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class Grange {
-
     constructor(
         public traverser: Traverser,
         public core: GrangeCore,
         public store: Store<GrangeState>,
         public ui: PastanagaService,
     ) {
-        this.store.dispatch({ type: '[Traversing] Watch'});
+        this.store.dispatch({ type: '[Traversal] Watch' });
     }
 
     getContext(): Observable<any> {
@@ -27,78 +26,86 @@ export class Grange {
     }
 
     getContextAs<T>(): Observable<T> {
-        return this.getContext().pipe(
-            map(context => context as T)
-        );
+        return this.getContext().pipe(map((context) => context as T));
     }
 
-    updateContext(changes: any): {onComplete: Observable<boolean>} {
+    updateContext(changes: any): { onComplete: Observable<boolean> } {
         const onComplete = new AsyncSubject<boolean>();
         let initialContext: any;
         let path: string;
-        this.getContext().pipe(
-            take(1),
-            tap(context => {
-                initialContext = context;
-                path = this.core.api.getPath(context['@id']);
-                this.store.dispatch(new TraverserActions.UpdateTraverserResource({path, changes}));
-            }),
-            concatMap(newContext => this.core.resource.update(path, deepMerge(initialContext, changes))),
-        ).subscribe(
-            () => {
-                onComplete.next(true);
-                onComplete.complete();
-            },
-            () => {
-                this.store.dispatch(new TraverserActions.UpdateTraverserResource({path, changes: initialContext}));
-                onComplete.next(false);
-                onComplete.complete();
-            },
-        );
-        return {onComplete};
+        this.getContext()
+            .pipe(
+                take(1),
+                tap((context) => {
+                    initialContext = context;
+                    path = this.core.api.getPath(context['@id']);
+                    this.store.dispatch(new TraverserActions.UpdateTraverserResource({ path, changes }));
+                }),
+                concatMap((newContext) => this.core.resource.update(path, deepMerge(initialContext, changes))),
+            )
+            .subscribe(
+                () => {
+                    onComplete.next(true);
+                    onComplete.complete();
+                },
+                () => {
+                    this.store.dispatch(
+                        new TraverserActions.UpdateTraverserResource({ path, changes: initialContext }),
+                    );
+                    onComplete.next(false);
+                    onComplete.complete();
+                },
+            );
+        return { onComplete };
     }
 
-    addInContext(content: any): {onComplete: Observable<boolean>} {
+    addInContext(content: any): { onComplete: Observable<boolean> } {
         const onComplete = new AsyncSubject<boolean>();
-        this.getContext().pipe(
-            take(1),
-            concatMap(context => this.core.resource.create(context['@id'], content)),
-        ).subscribe(
-            () => {
-                onComplete.next(true);
-                onComplete.complete();
-            },
-            () => {
-                onComplete.next(false);
-                onComplete.complete();
-            },
-        );
-        return {onComplete};
+        this.getContext()
+            .pipe(
+                take(1),
+                concatMap((context) => this.core.resource.create(context['@id'], content)),
+            )
+            .subscribe(
+                () => {
+                    onComplete.next(true);
+                    onComplete.complete();
+                },
+                () => {
+                    onComplete.next(false);
+                    onComplete.complete();
+                },
+            );
+        return { onComplete };
     }
 
-    deleteContext(): {onComplete: Observable<boolean>} {
+    deleteContext(): { onComplete: Observable<boolean> } {
         const onComplete = new AsyncSubject<boolean>();
         let initialContext: any;
         let path: string;
-        this.getContext().pipe(
-            take(1),
-            tap(context => {
-                initialContext = context;
-                path = this.core.api.getPath(context['@id']);
-                this.store.dispatch(new TraverserActions.CleanTraverserResources([path]));
-            }),
-            concatMap(() => this.core.resource.delete(path)),
-        ).subscribe(
-            () => {
-                onComplete.next(true);
-                onComplete.complete();
-            },
-            () => {
-                this.store.dispatch(new TraverserActions.UpdateTraverserResource({path, changes: initialContext}));
-                onComplete.next(false);
-                onComplete.complete();
-            },
-        );
-        return {onComplete};
+        this.getContext()
+            .pipe(
+                take(1),
+                tap((context) => {
+                    initialContext = context;
+                    path = this.core.api.getPath(context['@id']);
+                    this.store.dispatch(new TraverserActions.CleanTraverserResources([path]));
+                }),
+                concatMap(() => this.core.resource.delete(path)),
+            )
+            .subscribe(
+                () => {
+                    onComplete.next(true);
+                    onComplete.complete();
+                },
+                () => {
+                    this.store.dispatch(
+                        new TraverserActions.UpdateTraverserResource({ path, changes: initialContext }),
+                    );
+                    onComplete.next(false);
+                    onComplete.complete();
+                },
+            );
+        return { onComplete };
     }
 }
