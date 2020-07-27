@@ -38,10 +38,18 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         BrowserAnimationsModule,
         TraversalModule,
         GrangeRootModule.forRoot(),
-        StoreModule.forRoot({}),
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false,
+                },
+            },
+        ),
         StoreDevtoolsModule.instrument({
             logOnly: environment.production,
-            maxAge: 25
+            maxAge: 25,
         }),
         AngularSvgIconModule.forRoot(),
         ButtonModule,
@@ -63,6 +71,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
             },
         },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -9,13 +9,19 @@ import { ButtonModule } from '@guillotinaweb/pastanaga-angular';
 import { environment } from '../environments/environment';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         GrangeRootModule.forRoot(),
-        StoreModule.forRoot({}),
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false,
+                },
+            },
+        ),
         TraversalModule,
         ButtonModule,
     ],
@@ -28,6 +34,6 @@ import { environment } from '../environments/environment';
             },
         },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
