@@ -1,3 +1,9 @@
+# 1.3.4 (2021-01-23)
+
+### Improvement
+
+-   Upgrade to Angular 11
+
 # 1.3.3 (2020-07-29)
 
 ### Improvement

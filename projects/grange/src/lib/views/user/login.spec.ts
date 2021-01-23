@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
 import {
   HttpTestingController,
   HttpClientTestingModule
@@ -27,7 +27,7 @@ describe('LoginView', () => {
   let component: LoginView;
   let fixture: ComponentFixture<LoginView>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoginView, ViewView],
       imports: [HttpClientTestingModule, TraversalModule, FormsModule],
