@@ -4,6 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve demo",
+        "build:demo": "ng build --prod demo",
         "build": "ng build --prod grange && cp ./README.md ./dist/grange",
         "test": "jest",
         "lint": "ng lint",

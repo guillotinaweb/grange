@@ -1,5 +1,7 @@
 # Grange
 
+[![Build Status](https://github.com/guillotinaweb/grange/workflows/CI/badge.svg)](https://github.com/guillotinaweb/grange/actions?query=workflow%3ACI)
+
 The Guillotina REST API aNGular Environment.
 
 The Grange is a rich extensible development toolkit.
